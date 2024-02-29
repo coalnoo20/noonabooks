@@ -1,0 +1,231 @@
+// * 기본 설정
+// ! 이 영역은 HTML 전체에 대한 기본 설정을 모아둠
+// ! 여기 담긴 설정은 Const 라고 생각하고 작업 바람
+
+// ! (문자열 방식)
+
+    @charset "utf-8";
+
+// ! (자주 쓰이는 CSS 작업에 필요한 기본적인 전역 설정)
+
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    li{list-style: none;}
+    a{text-decoration: none; color: inherit;}
+    img{max-width: 100%; vertical-align: top;}
+    table{border-collapse: collapse; border: 1px solid #ccc; width: 100%;}
+    button{
+        cursor: pointer;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+    body{background: #fff; color: #333;}
+
+// * BootStrap 영역
+// ! 현재는 미사용. 제작시 필요하다면 팀원 공유 및 이 영역에서 수정 필요
+
+    // !-> SASS - BreakPoint 양식
+    // $grid-breakpoints: (
+    //   xs: 0,
+    //   sm: 576px,
+    //   md: 768px,
+    //   lg: 992px,
+    //   xl: 1200px,
+    //   xxl: 1400px
+    // );
+
+// * 폰트 셋팅 영역
+// ! 폰트 추가가 필요한 경우 ONDAL 에 문의 바람
+
+    // ! font-family settings
+
+    @font-face {
+        font-family: "NanumSquareB";
+        src: url("../fonts/NanumSquareB.eot");
+        src: local("NanumSquareB"), url("../fonts/NanumSquareB.woff") format("woff"), url("../fonts/NanumSquareB.ttf") format("truetype");
+    }
+
+    @font-face {
+        font-family: "NanumSquareR";
+        src: url("../fonts/NanumSquareR.eot");
+        src: local("NanumSquareR"), url("../fonts/NanumSquareR.woff") format("woff"), url("../fonts/NanumSquareR.ttf") format("truetype");
+    }
+
+    @font-face {
+        font-family: "NanumSquareRoundB";
+        src: url("../fonts/NanumSquareRoundB.eot");
+        src: local("NanumSquareRoundB"), url("../fonts/NanumSquareRoundB.woff") format("woff"), url("../fonts/NanumSquareRoundB.ttf") format("truetype");
+    }
+
+    @font-face {
+        font-family: "NanumSquareRoundR";
+        src: url("../fonts/NanumSquareRoundR.eot");
+        src: local("NanumSquareRoundR"), url("../fonts/NanumSquareRoundR.woff") format("woff"), url("../fonts/NanumSquareRoundR.ttf") format("truetype");
+    }
+
+
+    @font-face {
+        font-family: "NanumDaSiSiJagHae";
+        src: url("../fonts/NanumDaSiSiJagHae.eot");
+        src: local("NanumDaSiSiJagHae"), url("../fonts/NanumDaSiSiJagHae.woff") format("woff"), url("../fonts/NanumDaSiSiJagHae.ttf") format("truetype");
+    }
+
+    @font-face {
+        font-family: "OldLondon";
+        src: url("../fonts/OldLondon.eot");
+        src: local("OldLondon"), url("../fonts/OldLondon.woff") format("woff"), url("../fonts/OldLondon.ttf") format("truetype");
+    }
+
+    @font-face {
+        font-family: "OldLondonA";
+        src: url("../fonts/OldLondonAlternate.eot");
+        src: local("OldLondonAlternate"), url("../fonts/OldLondonAlternate.woff") format("woff"), url("../fonts/OldLondonAlternate.ttf") format("truetype");
+    }
+
+  //! 폰트 패밀리 Mixin 설정
+
+    @mixin font_NanumR($font_size:20px) {
+        $font_name:"NanumSquareR";
+        font-family: $font_name;
+        font-size: $font_size;
+    }
+
+    @mixin font_NanumB($font_size:20px) {
+        $font_name:"NanumSquareB";
+        font-family: $font_name;
+        font-size: $font_size;
+    }
+
+    @mixin font_NanumRR($font_size:20px) {
+        $font_name:"NanumSquareRoundR";
+        font-family: $font_name;
+        font-size: $font_size;
+    }
+
+    @mixin font_NanumRB($font_size:20px) {
+        $font_name:"NanumSquareRoundB";
+        font-family: $font_name;
+        font-size: $font_size;
+    }
+
+    
+    @mixin font_NanumS($font_size:20px) {
+        $font_name:"NanumDaSiSiJagHae";
+        font-family: $font_name;
+        font-size: $font_size;
+    }
+
+    @mixin font_OldLondon($font_size:20px) {
+        $font_name:"OldLondon";
+        font-family: $font_name;
+        font-size: $font_size;
+    }
+
+    @mixin font_OldLondonA($font_size:20px) {
+        $font_name:"OldLondonAlternate";
+        font-family: $font_name;
+        font-size: $font_size;
+    }
+
+// * 디자인용 전역 설정
+// ! css 클래스로 구별된 디자인 요소 설정 영역 - 추가 원하는 경우 ONDAL에 문의
+
+    .w_150 {
+        width: 150px !important;
+    }
+
+    .w_200 {
+        width: 200px !important;
+    }
+
+    .w_300 {
+        width: 300px !important;
+    }
+
+
+    .h_40 {
+        height: 40px !important;
+    }
+
+
+    .h_60 {
+        height: 60px !important;
+    }
+
+    .btn_blue {
+        background: #373ea5;
+        color: #fff;
+        border-radius: 5px;
+        margin: 5px;
+        @include font_NanumRB(14px);
+    }
+
+    .text_red {
+        color: red;
+    }
+
+    .text_seagreen {
+        color: seagreen;
+    }
+
+
+// * 개별 페이지 설정 영역
+// ! 개별 페이지별 설정 - 메인 담당자 외 작업 추가되는 경우 반드시 ONDAL 및 담당자에 노티 해주세요.
+
+    // * 개별 페이지 설정 - 0. 메인화면 (home = index.html) / 담당자 (원종, 하영)
+
+    .page_home {
+        margin: 20px;
+
+        .home_title {
+            padding: 10px;
+        }
+
+        .home_proto {
+            // ? 하영님 작업 영역
+            border: solid 1px #b8b8b8;
+            padding: 30px;
+            margin-top: 10px;
+        }
+    };
+
+
+
+    // * 개별 페이지 설정 - 1. 상세 검색창 (search_result)
+
+    // * 개별 페이지 설정 - 2. 제품 상세창 (item_detail)
+
+    // * 개별 페이지 설정 - 3. 장바구니 (list_shopping)
+
+    // * 개별 페이지 설정 - 4. 구매 진행 (purchase)
+
+    // * 개별 페이지 설정 - 8. 고객센터 / FAQ (customer_service)
+
+    // * 개별 페이지 설정 - 9. 매장안내 (info_shop) / 담당자 (지현)
+
+    // * 개별 페이지 설정 - 99. Test 페이지 (api_test)
+
+
+    .page_api_test {
+        margin: 20px;
+            
+        .test_title {
+            padding: 10px;
+        }
+
+        
+        .btn_box_test {
+            margin-top: 20px;
+            padding: 10px;
+            border: solid 1px #b8b8b8;
+            border-radius: 10px;
+        }
+
+        .test_result {
+            margin-top: 20px;
+            padding: 30px;
+            border: solid 1px #b8b8b8;
+            border-radius: 10px;
+        }
+
+    };
