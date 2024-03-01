@@ -119,7 +119,7 @@ let currentIdx = 0;
 
 let slideWidth = 260;
 
-let slideMargin = 120;
+let slideMargin = 150;
 
 let prevBtn = document.querySelector('.prev');
 
@@ -160,6 +160,7 @@ const loadSlideBooks = async () => {
     url.searchParams.set('SearchTarget', 'Book');
     url.searchParams.set('output', 'js');
     url.searchParams.set('Version', 20131101);
+    url.searchParams.set('Cover', 'Big');
 
     const response = await fetch(url);
     data = await response.json();
@@ -224,7 +225,6 @@ const setInitialPosition = () => {
 const moveSlide = (num) => {
     slides.style.left = -num * (slideWidth + slideMargin) + 'px';
     currentIdx = num;
-    console.log(currentIdx, slideItem.length);
     if (currentIdx === slideItem.length || currentIdx === -slideItem.length) {
         setTimeout(function () {
             slides.classList.remove('animated');
