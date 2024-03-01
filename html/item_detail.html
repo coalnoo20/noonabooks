@@ -10,6 +10,28 @@
 <body>
     <p><a class="text_red" href="/index.html"> > Home으로 돌아가기</a></p>
     <main class="page_item_detail">
+        <h1>Aladin 상품 조회</h1>
+        <button onclick="getItemDetails()">상품 상세 정보 조회</button>
+        <div id="results"></div>
+
+        <hr>
+
+        <div id="app">
+            <h2>리뷰</h2>
+            
+            <form id="review-form">
+              <label for="review-text">리뷰:</label>
+              <input type="text" id="review-text" required>
+        
+              <label for="review-rating">평점 (1-10):</label>
+              <input type="number" id="review-rating" min="1" max="10" required>
+        
+              <button type="button" onclick="submitReview()">제출</button>
+              <button type="button" onclick="cancelEdit()">취소</button>
+            </form>
+
+            <ul id="review-list"></ul>
+          </div>
     </main>
     <script src="/script/main.js"></script>  
 </body>

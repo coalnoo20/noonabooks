@@ -82,21 +82,28 @@ const urlAPI_ItemList = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemList.asp
 const urlAPI_ItemLookUp = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
 
 // ? 쿼리 영역 - ItemLookUp
+let ItemLookUp_ItemIdType = 'ISBN13';
+// ItemIdType - 가급적 13자리 ISBN / 다른 API와 연동시 체크 포인트
 
+let ItemLookUp_ItemId = 9788958285342;
 // ItemId - 알라딘 고유 상품 번호 (필수)
 
-// ItemIdType - 가급적 13자리 ISBN / 다른 API와 연동시 체크 포인트
-// Cover - 커버 이미지 / 기본값 Mid
+let ItemLookUp_Output = 'js';
 // Output
-// Partner
+
+let ItemLookUp_Version = '20131101';
 // Version
+
+// OptResult
+// Cover - 커버 이미지 / 기본값 Mid
+// Partner
 // includeKey
 // offCode
-// OptResult
 
 // ? ttbKey
 
 const ttbKey_ONDAL = `ttblusci2359001`; // ! TTB key - 원종
+const ttbKey_LUNA = `ttblhyasd2323001`; // ! TTB key - 혜영
 
 let urlTest = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_ONDAL}`);
 
@@ -150,6 +157,144 @@ const getList = async () => {
 
     console.log('ddd', data);
 };
+
+// ! 알라딘 ItemLookUp 가져오기
+const getItemDetails = async () => {
+    let url = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
+    console.log('get item details');
+
+    url.searchParams.set('ItemIdType', ItemLookUp_ItemIdType);
+    url.searchParams.set('ItemId', ItemLookUp_ItemId);
+    url.searchParams.set('Output', ItemSearch_output);
+    url.searchParams.set('Version', ItemLookUp_Version);
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        // console.log(data.item[0]);
+        displayResults(data.item[0]);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+const displayResults = (results) => {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = ''; // 이전 결과 초기화
+
+    const singleBookElement = createBookElement(results);
+    resultsContainer.appendChild(singleBookElement);
+};
+
+const createBookElement = (bookInfo) => {
+    const bookElement = document.createElement('div');
+    bookElement.innerHTML = `<h2>제목: ${bookInfo.title}</h2>
+        <h3>작가: ${bookInfo.author}</h3>
+        <p>${bookInfo.description.length > 150 ? bookInfo.description.slice(0, 150) : bookInfo.description}...</p>
+        <p>도서 출판날짜: ${bookInfo.pubDate}</p>
+        <p>ISBN: ${bookInfo.isbn}</p>
+        <p>판매 가격: ${bookInfo.priceStandard.toLocaleString('en-US', {
+            currency: 'KRW',
+        })}원</p>
+        <p>할인 가격: ${bookInfo.priceSales.toLocaleString('en-US', {
+            currency: 'KRW',
+        })}원</p>
+        <img src="${bookInfo.cover}" alt="cover"><br>
+        <hr>`;
+    return bookElement;
+};
+
+// ! 리뷰 작성 CRUD
+let reviews = [
+    { id: 1, text: 'Great product!', rating: 5 },
+    { id: 2, text: 'Could be better', rating: 3 },
+];
+
+let editingReviewId = null;
+
+const renderReviews = () => {
+    const reviewList = document.getElementById('review-list');
+    reviewList.innerHTML = '';
+
+    reviews.forEach((review) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>평점:</strong> ${review.rating}, <span>${review.text}</span> 
+                      <button onclick="editReview(${review.id})">수정</button>
+                      <button onclick="deleteReview(${review.id})">삭제</button>`;
+        reviewList.appendChild(li);
+    });
+};
+
+const submitReview = () => {
+    const textInput = document.getElementById('review-text');
+    const ratingInput = document.getElementById('review-rating');
+
+    const text = textInput.value;
+    const rating = parseInt(ratingInput.value, 10);
+
+    if (text && !isNaN(rating) && rating >= 1 && rating <= 10) {
+        if (editingReviewId !== null) {
+            // 리뷰 편집
+            const index = reviews.findIndex((review) => review.id === editingReviewId);
+
+            if (index !== -1) {
+                reviews[index].text = text;
+                reviews[index].rating = rating;
+                editingReviewId = null;
+            }
+        } else {
+            // 리뷰 추가
+            const newReview = {
+                id: reviews.length + 1,
+                text: text,
+                rating: rating,
+            };
+            reviews.push(newReview);
+        }
+
+        // 폼 비우기
+        textInput.value = '';
+        ratingInput.value = '';
+
+        renderReviews();
+    } else {
+        alert('유효하지 않은 입력입니다. 유효한 리뷰 텍스트와 평가를 입력해주세요.');
+    }
+};
+
+const editReview = (id) => {
+    const reviewToEdit = reviews.find((review) => review.id === id);
+
+    if (reviewToEdit) {
+        const textInput = document.getElementById('review-text');
+        const ratingInput = document.getElementById('review-rating');
+
+        textInput.value = reviewToEdit.text;
+        ratingInput.value = reviewToEdit.rating;
+
+        editingReviewId = id;
+    }
+};
+
+const deleteReview = (id) => {
+    const confirmDelete = confirm('이 리뷰를 삭제하시겠습니까?');
+
+    if (confirmDelete) {
+        reviews = reviews.filter((review) => review.id !== id);
+        renderReviews();
+    }
+};
+
+const cancelEdit = () => {
+    editingReviewId = null;
+
+    // 폼 비우기
+    document.getElementById('review-text').value = '';
+    document.getElementById('review-rating').value = '';
+};
+
+// 렌더링
+renderReviews();
 
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
