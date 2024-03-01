@@ -119,7 +119,7 @@ let currentIdx = 0;
 
 let slideWidth = 260;
 
-let slideMargin = 120;
+let slideMargin = 150;
 
 let prevBtn = document.querySelector('.prev');
 
@@ -156,22 +156,28 @@ const loadSlideBooks = async () => {
     const url = new URL(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey_ONDAL}`);
     url.searchParams.set('QueryType', 'ItemEditorChoice');
     url.searchParams.set('CategoryId', 1); //소설
-    url.searchParams.set('MaxResults', 5);
+    url.searchParams.set('MaxResults', 10);
     url.searchParams.set('SearchTarget', 'Book');
     url.searchParams.set('output', 'js');
     url.searchParams.set('Version', 20131101);
+    url.searchParams.set('Cover', 'Big');
 
     const response = await fetch(url);
     data = await response.json();
     bookList = data.item;
 
+    // todo : 링크는 추후 상세페이지 링크로 수정할 예정(현재 알라딘 링크로 연결됨)
     const slideHTML = bookList
         .map((book) => {
             return `<div class="slide_item">
-        <div></div>
+            <a href="${book.link}">
+        <div class="slide_contents">
+            <h2>${book.title}</h2>
+            <p>${book.author}</p>
+        </div>
         <img
           src="${book.cover}"
-        />
+        /></a>
       </div>`;
         })
         .join('');
@@ -224,7 +230,6 @@ const setInitialPosition = () => {
 const moveSlide = (num) => {
     slides.style.left = -num * (slideWidth + slideMargin) + 'px';
     currentIdx = num;
-    console.log(currentIdx, slideItem.length);
     if (currentIdx === slideItem.length || currentIdx === -slideItem.length) {
         setTimeout(function () {
             slides.classList.remove('animated');
