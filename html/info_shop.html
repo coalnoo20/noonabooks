@@ -1,113 +1,136 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>매장 안내</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQP7m2vPow9EWl09VFT01lyVJQWYTAvAM"></script>
-    <!-- ! scss 파일에 코드를 넣으니 적용이 안 돼요
-         ! 우선 이 html 안에 스타일을 설정해두었습니다.
-         ! 추후 방법을 익히면 이동시켜두겠습니다 ! -->
     <style>
-    #map {
+      #map {
         height: 400px;
-        width: 60%;
+        width: 63%;
         margin: 100px auto 20px;
-    }
-    #title {
+        border-radius: 4px;
+      }
+      .map_title {
         text-align: center;
         margin-top: 50px;
-    }
-    #nameColor {
-        color : rgb(98, 120, 194);
-        font-size : 27px;
-    }
+      }
+      .name_color {
+        color: rgb(98, 120, 194);
+        font-size: 27px;
+      }
 
-    #locationInfo {
-        position: relative; 
-        text-align: center; 
+      .location_info {
+        position: relative;
+        text-align: center;
         padding-top: 20px;
         display: flex;
         justify-content: space-around;
-    }
+      }
 
-    #locationInfo::before {
-        content: '';
+      .location_info::before {
+        content: "";
         display: block;
         border-bottom: 1px solid #ccc;
-        margin: 0 auto; 
-        width: 70%; 
-        position: absolute; 
+        margin: 0 auto;
+        width: 63%;
+        position: absolute;
         bottom: 0;
-        left: 0; 
-        right: 0; 
-    }
-    .info_item {
+        left: 0;
+        right: 0;
+      }
+      .info_item {
         margin-bottom: 10px;
-    }
-    .info_item h2 {
+      }
+      .info_item h2 {
         margin-bottom: 5px;
         font-size: 18px;
         text-align: left;
-    }
+      }
 
-    .info_item p {
+      .info_item p {
         font-size: 16px;
-    }
+      }
 
-    #subInfo {
+      .sub_info {
         margin: 20px auto;
         display: flex;
         justify-content: space-around;
-    }
-    .sub_item {
+      }
+      .sub_item {
         font-weight: bold;
-    }   
+      }
+      .bx-child {
+        font-size: 25px;
+        position: relative;
+        top: 5px;
+      }
+      .bus_info {
+        text-align: right;
+      }
     </style>
-</head>
-<!-- ! 매장 안내 -->
-<!-- todo: 찾아오시는 길 적용 사항만 먼저 반영 -->
-<body>
+  </head>
+  <!-- ! 매장 안내 -->
+  <body>
     <p><a class="text_red" href="../index.html"> > Home으로 돌아가기</a></p>
-    <h2 id="title"><span id="nameColor">Team20</span> 오시는 길</h2>
+    <h2 class="map_title"><span class="name_color">Team20</span> 오시는 길</h2>
     <div id="map"></div>
 
-    <section id="locationInfo">
-        <div class="info_item">
-            <h2>주소</h2>
-            <p>경기도 고양시 일산동구 호수로 817</p>
-        </div>
-        <div class="info_item">
-            <h2>연락처</h2>
-            <p>010-1234-5678</p>
-            <h2>이메일</h2>
-            <p>info@example.com</p>
-        </div>
+    <section class="location_info">
+      <div class="info_item">
+        <h2>주소</h2>
+        <p>경기 고양시 일산동구 호수로 595</p>
+      </div>
+      <div class="info_item">
+        <h2>연락처</h2>
+        <p>010-1234-5678</p>
+        <h2>이메일</h2>
+        <p>info@example.com</p>
+      </div>
+      <div class="info_item">
+        <h2>영업시간</h2>
+        (시간이 달라질 수 있음)<br />
+        월요일 ~ 일요일 오전 10:00~오후 10:00
+      </div>
+    </section>
+    <section class="sub_info">
+      주차 요금 안내
+      <!-- 표 형식으로 넣을 예정 / 그외 위치 조정 필요 -->
+      <div class="sub_item"><i class="bx bx-child"></i> 지하철 이용 시<br /></div>
+      <div class="sub_item"><i class="bx bxs-bus"></i> 버스 이용 시</div>
+    </section>
+    <section>
+      <div class="sub_item">
+        <span>정발산역(3호선 대화행)하차, 1번 출구 일산호수공원 방향 도보 10분거리</span>
+      </div>
+    </section>
+    <section>
+      <div class="sub_item">
+        <ul class="bus_info">
+          <li>일산동구청(정발산역) 하차, 일산호수공원 방향 도보 10분거리</li>
+          <li>3300(인천공항), 56, 150(김포공항), 72, 77, 7727(신촌), 830, 1500 등</li>
+          <li>일산호수공원 하차 도보 3분거리 3000, 3030(인천터미널), 7300(김포공항)</li>
+        </ul>
+      </div>
     </section>
 
-    <section id="subInfo">
-        <div class="sub_item">도보 이용 시 
-        </div>
-        <div class="sub_item">버스 이용 시
-
-        </div>
-    </section>
-<!-- ? 스크립트 파일은 모두 main.js에 넣으면 될 지 아니면 따로 기능별 스크립트 파일을 만들지 아직 모름 -->
     <script>
-        var mapElement = document.getElementById('map');
+      var mapElement = document.getElementById("map");
 
-        var map = new google.maps.Map(mapElement, {
-            center: {lat:  37.6609, lng: 126.7986}, 
-            zoom: 15
-        });
+      var map = new google.maps.Map(mapElement, {
+        center: { lat: 37.6609, lng: 126.7986 },
+        zoom: 15,
+      });
 
-        var marker = new google.maps.Marker({
-            position: {lat: 37.6609, lng: 126.7986}, 
-            map: map,
-            title: 'Team20 위치' 
-        });
+      var marker = new google.maps.Marker({
+        position: { lat: 37.6609, lng: 126.7986 },
+        map: map,
+        title: "Team20 위치",
+      });
     </script>
-    <script src="../script/main.js"></script>  
-</body>
+    <script src="../script/main.js"></script>
+  </body>
 </html>
