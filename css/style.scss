@@ -197,11 +197,38 @@
 
                     .slide_item {
                         cursor: pointer;
+                        position: relative;
                         width: 260px;
                         height: 380px;
                         float: left;
                         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2);
                         transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                        
+                        .slide_contents{
+                            position: absolute;
+                            width: 100%;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background: rgb(0, 0, 0, 0);
+                            transition: 0.4s;
+                        
+                            h2{
+                                text-align: center;
+                                display: none;
+                                color: white;
+                                margin-bottom: 1em;
+                                word-break: keep-all;
+                                font-size: 1.4em;
+                            }
+
+                            p{
+                                text-align: center;
+                                display: none;
+                                color: white;
+                                word-break: keep-all;
+                            }
+                        }
 
                         img {
                             width: 100%;
@@ -210,7 +237,19 @@
                     }
 
                     .slide_item:hover {
+                        background: #000000;
                         box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.34);
+
+                        img{
+                            opacity: 0.2;
+                        }
+                        
+                        .slide_contents {
+                            h2, p{
+                                display: block;
+                                opacity: 1;
+                            }
+                        }
                     }
 
                     .slide_item:not(:last-child) {

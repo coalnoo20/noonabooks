@@ -156,7 +156,7 @@ const loadSlideBooks = async () => {
     const url = new URL(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey_ONDAL}`);
     url.searchParams.set('QueryType', 'ItemEditorChoice');
     url.searchParams.set('CategoryId', 1); //소설
-    url.searchParams.set('MaxResults', 5);
+    url.searchParams.set('MaxResults', 10);
     url.searchParams.set('SearchTarget', 'Book');
     url.searchParams.set('output', 'js');
     url.searchParams.set('Version', 20131101);
@@ -169,7 +169,10 @@ const loadSlideBooks = async () => {
     const slideHTML = bookList
         .map((book) => {
             return `<div class="slide_item">
-        <div></div>
+        <div class="slide_contents">
+            <h2>${book.title}</h2>
+            <p>${book.author}</p>
+        </div>
         <img
           src="${book.cover}"
         />
