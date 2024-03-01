@@ -4,13 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세 검색</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/bdee2d4af8.js" crossorigin="anonymous"></script>
     <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body>
     <p><a class="text_red" href="/index.html"> > Home으로 돌아가기</a></p>
-    <main class="page_search_result">
-    </main>
-    <script src="/script/main.js"></script>  
+
+    <section class="container">
+        <section class="row">
+            <div class="col-6">
+                <h2>원하는 책을 검색해보세요</h2>
+                <div>
+                    <p>#어떤 책을 찾으시나요?</p>
+                    <input type="text" placeholder="제목, 저자, 카테고리 검색"/>
+                </div>
+                <div>
+                    <span>#상세 검색</span>
+                    <button><i class="fa-solid fa-caret-down"></i></button>
+                    <div class="search_area">			
+                        <ul>
+                            <li>
+                                <div>저자</div>
+                                <div>
+                                    <input type="text" size="40" placeholder=""> 
+                                </div>
+                            </li>
+                            <li>
+                                <div>출판사</div>
+                                <div>
+                                    <input type="text" size="40" placeholder="">
+                                </div>
+                            </li>
+                            <li>
+                                <div>출간일</div>
+                                <div>
+                                    <div>
+                                        <button type="button" data-value="">전체</button>
+                                        <button type="button" data-value="3">3개월</button>
+                                        <button type="button" data-value="6">6개월</button>
+                                        <button type="button" data-value="9">9개월</button>
+                                        <button type="button" data-value="24">24개월</button>
+                                        <button type="button" data-value="">직접설정</button>
+                                    </div>
+                                    <div>
+                                        <input type="text" size="10"> 년
+                                        <select id="KeyMonthStart">
+                                            <option selected="">01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                            <option>05</option>
+                                            <option>06</option>
+                                            <option>07</option>
+                                            <option>08</option>
+                                            <option>09</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                        </select>
+                                        <span>월부터</span>
+                                        <input type="text" size="10"> 년
+                                        <select id="KeyMonthEnd">
+                                            <option selected="">01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                            <option>05</option>
+                                            <option>06</option>
+                                            <option>07</option>
+                                            <option>08</option>
+                                            <option>09</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                        </select>
+                                        <span>월까지</span>
+                                    </div>
+                                </div>
+                            </li>				
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <p>#추천검색어</p>
+                    <div>
+                        <ul>
+                            <li>
+                                <span>
+                                    <button>#수능특강</button>
+                                </span>
+                                <span>
+                                    <button>#홍보의 신</button>
+                                </span>
+                                <span>
+                                    <button>#주술회전</button>
+                                </span>
+                                <span>
+                                    <button>#토익</button>
+                                </span>
+                                <span>
+                                    <button>#주술회전</button>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <button>검색하기</button>
+                    <button>랜덤추천</button>
+                </div>
+            </div>
+        
+            <div class="col-6">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지">
+                    </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="row">
+                <div class="col-3">
+                    검색 결과 책 이미지
+                </div>
+                <div class="col-7">
+                    <div>제목</div>
+                    <div>
+                        <div>저자</div>
+                        <span>출판사</span><span>출간일</span>
+                    </div>
+                    <div>가격</div>
+                </div>
+                <div class="col-2">
+                    <div>
+                        <button>장바구니</button>
+                    </div>
+                    <div>
+                        <button>바로구매</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../script/main.js"></script>
 </body>
 </html>

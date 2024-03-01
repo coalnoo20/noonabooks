@@ -107,6 +107,22 @@ const testScript = () => {
     }
 };
 
+const getRandomBooks = () => {
+    console.log('function getRandomBooks called');
+};
+
+const getRandomOneBook = () => {
+    console.log('function getRandomOneBook called');
+};
+
+const getListByKeyword = () => {
+    console.log('function getListByKeyword called');
+};
+
+const getListByKeyword = () => {
+    console.log('function getListByKeyword called');
+};
+
 // * -------------
 // * 실행 영역
 // * -------------
