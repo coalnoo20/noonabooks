@@ -182,6 +182,10 @@ body {
   height: 60px !important;
 }
 
+.h_60 {
+  height: 60px !important;
+}
+
 .btn_blue {
   background: #373ea5;
   color: #fff;
@@ -192,6 +196,10 @@ body {
 
 .text_red {
   color: red;
+}
+
+.text_seagreen {
+  color: seagreen;
 }
 
 .text_seagreen {
@@ -212,9 +220,50 @@ body {
 
   .home_proto {
     // ? 하영님 작업 영역
-    border: solid 1px #b8b8b8;
-    padding: 30px;
-    margin-top: 10px;
+    // border: solid 1px #b8b8b8;
+    // padding: 30px;
+    // margin-top: 10px;
+
+    .slide_wrapper {
+      position: relative;
+      width: 100vw;
+      height: 380px;
+      overflow: hidden;
+
+      .slides {
+        position: absolute;
+        left: 0;
+        height: 0;
+        display: flex;
+        justify-content: space-around;
+
+        .slide_item {
+          width: 260px;
+          height: 380px;
+          float: left;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .slide_item:not(:last-child) {
+          margin-right: 120px;
+        }
+      }
+
+      .slides.animated {
+        transition: 0.5s ease-out;
+      }
+    }
+
+    .slide_btn {
+      display: flex;
+      justify-content: center;
+      margin: 2em;
+    }
   }
 }
 

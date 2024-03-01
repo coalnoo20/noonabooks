@@ -47,6 +47,7 @@
           <br />
           <p>정발산역(3호선 대화행)하차, 1번 출구 일산호수공원 방향 도보 10분거리</p>
         </div>
+<<<<<<< HEAD
         <div class="sub_item">
           <h3><i class="bx bxs-bus"></i> 버스 이용 시</h3>
           <br />
@@ -69,3 +70,24 @@
     <script src="../script/main.js"></script>
   </body>
 </html>
+=======
+    </section>
+<!-- ? 스크립트 파일은 모두 main.js에 넣으면 될 지 아니면 따로 기능별 스크립트 파일을 만들지 아직 모름 -->
+    <script>
+        var mapElement = document.getElementById('map');
+
+        var map = new google.maps.Map(mapElement, {
+            center: {lat:  37.6609, lng: 126.7986}, 
+            zoom: 15
+        });
+
+        var marker = new google.maps.Marker({
+            position: {lat: 37.6609, lng: 126.7986}, 
+            map: map,
+            title: 'Team20 위치' 
+        });
+    </script>
+    <script src="/script/main.js"></script>  
+</body>
+</html>
+>>>>>>> dev
