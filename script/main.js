@@ -153,7 +153,7 @@ const getList = async () => {
 
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
-    const url = new URL(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey}`);
+    const url = new URL(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey_ONDAL}`);
     url.searchParams.set('QueryType', 'ItemEditorChoice');
     url.searchParams.set('CategoryId', 1); //소설
     url.searchParams.set('MaxResults', 5);
