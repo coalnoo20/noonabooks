@@ -14,8 +14,7 @@ const urlProxy = 'corsproxy.io/?'; // ! 프록시 서버 주소 (아래 urlAPI �
 
 // ? 알라딘 ItemSearch 주소
 // ? 알라딘 상품 검색 - 상세 검색 / 검색 결과 창
-const urlAPI_ItemSearch =
-    urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
+const urlAPI_ItemSearch = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
 
 // ? 쿼리 영역 - ItemSearch
 
@@ -57,8 +56,7 @@ let ItemSearch_version = '20131101';
 
 // ? 알라딘 ItemList 주소
 // ? 상품 리스트 API - 추천도서 / 신간 / 베스트 셀러 등
-const urlAPI_ItemList =
-    urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
+const urlAPI_ItemList = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
 
 // ? 쿼리 영역 - ItemList
 
@@ -81,8 +79,7 @@ const urlAPI_ItemList =
 
 // ? 알라딘 ItemLookUp 주소
 // ? 상품 조회 API - 상품 상세 정보
-const urlAPI_ItemLookUp =
-    urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
+const urlAPI_ItemLookUp = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
 
 // ? 쿼리 영역 - ItemLookUp
 
@@ -113,21 +110,6 @@ let callback = [];
 
 let data = '';
 
-// * HOME 슬라이드 관련 변수
-let slides = document.querySelector('.slides');
-
-let slideItem = document.querySelectorAll('.slides .slide_item');
-
-let currentIdx = 0;
-
-let slideWidth = 260;
-
-let slideMargin = 120;
-
-let prevBtn = document.querySelector('.prev');
-
-let nextBtn = document.querySelector('.next');
-
 // ! html control (object)
 
 // * -------------
@@ -154,100 +136,9 @@ const getList = async () => {
     console.log('ddd', data);
 };
 
-// ! HOME 슬라이드 추천도서 가져오기
-const loadSlideBooks = async () => {
-    const url = new URL(
-        `https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey}`
-    );
-    url.searchParams.set('QueryType', 'ItemEditorChoice');
-    url.searchParams.set('CategoryId', 1); //소설
-    url.searchParams.set('MaxResults', 5);
-    url.searchParams.set('SearchTarget', 'Book');
-    url.searchParams.set('output', 'js');
-    url.searchParams.set('Version', 20131101);
-
-    const response = await fetch(url);
-    data = await response.json();
-    bookList = data.item;
-
-    const slideHTML = bookList
-        .map((book) => {
-            return `<div class="slide_item">
-        <div></div>
-        <img
-          src="${book.cover}"
-        />
-      </div>`;
-        })
-        .join('');
-
-    document.getElementById('main_slide').innerHTML = slideHTML;
-
-    slideClone();
-};
-
 // * -------------
 // * 함수 영역 - html/css/ui 관련
 // * -------------
-
-//! HOME 슬라이드 구현 함수
-const slideClone = () => {
-    slideItem = document.querySelectorAll('.slides .slide_item');
-    for (let i = 0; i < slideItem.length; i++) {
-        let cloneSlide = slideItem[i].cloneNode(true);
-        cloneSlide.classList.add('clone');
-        slides.appendChild(cloneSlide);
-    }
-    for (let i = slideItem.length - 1; i >= 0; i--) {
-        let cloneSlide = slideItem[i].cloneNode(true);
-        cloneSlide.classList.add('clone');
-        slides.prepend(cloneSlide);
-    }
-
-    updateWidth();
-    setInitialPosition();
-    setTimeout(function () {
-        slides.classList.add('animated');
-    }, 100);
-};
-
-const updateWidth = () => {
-    let currentSlides = document.querySelectorAll('.slides .slide_item');
-    let newSlideCount = currentSlides.length;
-
-    let newWidth =
-        (slideWidth + slideMargin) * newSlideCount - slideMargin + 'px';
-    slides.style.width = newWidth;
-};
-
-//초기 위치 세팅
-const setInitialPosition = () => {
-    let initialTranslateValue = -(
-        (slideWidth + slideMargin) *
-        slideItem.length
-    );
-    slides.style.transform = `translateX(${initialTranslateValue}px)`;
-};
-
-//슬라이드 움직이는 함수
-const moveSlide = (num) => {
-    slides.style.left = -num * (slideWidth + slideMargin) + 'px';
-    currentIdx = num;
-    console.log(currentIdx, slideItem.length);
-    if (currentIdx === slideItem.length || currentIdx === -slideItem.length) {
-        setTimeout(function () {
-            slides.classList.remove('animated');
-            slides.style.left = '0px';
-            currentIdx = 0;
-        }, 500);
-        setTimeout(function () {
-            slides.classList.add('animated');
-        }, 600);
-    }
-};
-
-prevBtn.addEventListener('click', () => moveSlide(currentIdx - 1));
-nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
 
 // * -------------
 // * 테스트 코드 영역
@@ -286,14 +177,6 @@ const getRandomBooks = () => {
     console.log('function getRandomBooks called');
 };
 
-const getRandomOneBook = () => {
-    console.log('function getRandomOneBook called');
-};
-
-const getListByKeyword = () => {
-    console.log('function getListByKeyword called');
-};
-
 const getListByKeyword = () => {
     console.log('function getListByKeyword called');
 };
@@ -303,5 +186,4 @@ const getListByKeyword = () => {
 // * -------------
 // ! 페이지 로드 후 실행이 필요한 기능
 
-loadSlideBooks();
 console.log('start-update');
