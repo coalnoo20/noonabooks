@@ -160,16 +160,16 @@ const getList = async () => {
 
 // ! 알라딘 ItemLookUp 가져오기
 const getItemDetails = async () => {
-    let url = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
+    let urlDetail = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
     console.log('get item details');
 
-    url.searchParams.set('ItemIdType', ItemLookUp_ItemIdType);
-    url.searchParams.set('ItemId', ItemLookUp_ItemId);
-    url.searchParams.set('Output', ItemSearch_output);
-    url.searchParams.set('Version', ItemLookUp_Version);
+    urlDetail.searchParams.set('ItemIdType', ItemLookUp_ItemIdType);
+    urlDetail.searchParams.set('ItemId', ItemLookUp_ItemId);
+    urlDetail.searchParams.set('Output', ItemSearch_output);
+    urlDetail.searchParams.set('Version', ItemLookUp_Version);
 
     try {
-        const response = await fetch(url);
+        const response = await fetch(urlDetail);
         const data = await response.json();
         // console.log(data.item[0]);
         displayResults(data.item[0]);
@@ -293,21 +293,18 @@ const cancelEdit = () => {
     document.getElementById('review-rating').value = '';
 };
 
-// 렌더링
-renderReviews();
-
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
-    const url = new URL(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey_ONDAL}`);
-    url.searchParams.set('QueryType', 'ItemEditorChoice');
-    url.searchParams.set('CategoryId', 1); //소설
-    url.searchParams.set('MaxResults', 10);
-    url.searchParams.set('SearchTarget', 'Book');
-    url.searchParams.set('output', 'js');
-    url.searchParams.set('Version', 20131101);
-    url.searchParams.set('Cover', 'Big');
+    const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_ONDAL}`);
+    urlSlide.searchParams.set('QueryType', 'ItemEditorChoice');
+    urlSlide.searchParams.set('CategoryId', 1); //소설
+    urlSlide.searchParams.set('MaxResults', 10);
+    urlSlide.searchParams.set('SearchTarget', 'Book');
+    urlSlide.searchParams.set('output', 'js');
+    urlSlide.searchParams.set('Version', 20131101);
+    urlSlide.searchParams.set('Cover', 'Big');
 
-    const response = await fetch(url);
+    const response = await fetch(urlSlide);
     data = await response.json();
     bookList = data.item;
 
@@ -441,4 +438,5 @@ const getListByKeyword = () => {
 // ! 페이지 로드 후 실행이 필요한 기능
 
 loadSlideBooks();
+renderReviews(); // 리뷰 렌더링
 console.log('start-update');
