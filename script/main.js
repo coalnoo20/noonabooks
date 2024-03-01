@@ -70,6 +70,36 @@ const getList = async () => {
     console.log('ddd', data);
 };
 
+// ! HOME 슬라이드 추천도서 가져오기
+const loadSlideBooks = async () => {
+    const url = new URL(
+        `https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey}`
+    );
+    url.searchParams.set('QueryType', 'ItemEditorChoice');
+    url.searchParams.set('CategoryId', 1); //소설
+    url.searchParams.set('MaxResults', 5);
+    url.searchParams.set('SearchTarget', 'Book');
+    url.searchParams.set('output', 'js');
+    url.searchParams.set('Version', 20131101);
+
+    const response = await fetch(url);
+    const data = await response.json();
+    bookList = data.item;
+
+    const slideHTML = bookList
+        .map((book) => {
+            return `<div class="slide_item">
+        <div></div>
+        <img
+          src="${book.cover}"
+        />
+      </div>`;
+        })
+        .join('');
+
+    document.getElementById('main_slide').innerHTML = slideHTML;
+};
+
 // * -------------
 // * 함수 영역 - html/css/ui 관련
 // * -------------
@@ -112,4 +142,5 @@ const testScript = () => {
 // * -------------
 // ! 페이지 로드 후 실행이 필요한 기능
 
+loadSlideBooks();
 console.log('start-update');
