@@ -141,6 +141,9 @@ body {
 .page_home .home_proto .slide_wrapper .slides .slide_item:not(:last-child) {
   margin-right: 120px;
 }
+.page_home .home_proto .slide_wrapper .slides.animated {
+  transition: 0.5s ease-out;
+}
 .page_home .home_proto .slide_btn {
   display: flex;
   justify-content: center;

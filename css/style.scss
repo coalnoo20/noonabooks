@@ -215,6 +215,10 @@
                         margin-right: 120px;
                     }
                 }
+
+                .slides.animated {
+                    transition: 0.5s ease-out;
+                }
             }
             
             .slide_btn {

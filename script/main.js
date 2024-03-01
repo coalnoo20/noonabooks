@@ -44,6 +44,21 @@ let callback = [];
 
 let data = '';
 
+// * HOME 슬라이드 관련 변수
+let slides = document.querySelector('.slides');
+
+let slideItem = document.querySelectorAll('.slides .slide_item');
+
+let currentIdx = 0;
+
+let slideWidth = 260;
+
+let slideMargin = 120;
+
+let prevBtn = document.querySelector('.prev');
+
+let nextBtn = document.querySelector('.next');
+
 // ! html control (object)
 
 // * -------------
@@ -83,7 +98,7 @@ const loadSlideBooks = async () => {
     url.searchParams.set('Version', 20131101);
 
     const response = await fetch(url);
-    const data = await response.json();
+    data = await response.json();
     bookList = data.item;
 
     const slideHTML = bookList
@@ -98,11 +113,72 @@ const loadSlideBooks = async () => {
         .join('');
 
     document.getElementById('main_slide').innerHTML = slideHTML;
+
+    slideClone();
 };
 
 // * -------------
 // * 함수 영역 - html/css/ui 관련
 // * -------------
+
+//! HOME 슬라이드 구현 함수
+const slideClone = () => {
+    slideItem = document.querySelectorAll('.slides .slide_item');
+    for (let i = 0; i < slideItem.length; i++) {
+        let cloneSlide = slideItem[i].cloneNode(true);
+        cloneSlide.classList.add('clone');
+        slides.appendChild(cloneSlide);
+    }
+    for (let i = slideItem.length - 1; i >= 0; i--) {
+        let cloneSlide = slideItem[i].cloneNode(true);
+        cloneSlide.classList.add('clone');
+        slides.prepend(cloneSlide);
+    }
+
+    updateWidth();
+    setInitialPosition();
+    setTimeout(function () {
+        slides.classList.add('animated');
+    }, 100);
+};
+
+const updateWidth = () => {
+    let currentSlides = document.querySelectorAll('.slides .slide_item');
+    let newSlideCount = currentSlides.length;
+
+    let newWidth =
+        (slideWidth + slideMargin) * newSlideCount - slideMargin + 'px';
+    slides.style.width = newWidth;
+};
+
+//초기 위치 세팅
+const setInitialPosition = () => {
+    let initialTranslateValue = -(
+        (slideWidth + slideMargin) *
+        slideItem.length
+    );
+    slides.style.transform = `translateX(${initialTranslateValue}px)`;
+};
+
+//슬라이드 움직이는 함수
+const moveSlide = (num) => {
+    slides.style.left = -num * (slideWidth + slideMargin) + 'px';
+    currentIdx = num;
+    console.log(currentIdx, slideItem.length);
+    if (currentIdx === slideItem.length || currentIdx === -slideItem.length) {
+        setTimeout(function () {
+            slides.classList.remove('animated');
+            slides.style.left = '0px';
+            currentIdx = 0;
+        }, 500);
+        setTimeout(function () {
+            slides.classList.add('animated');
+        }, 600);
+    }
+};
+
+prevBtn.addEventListener('click', () => moveSlide(currentIdx - 1));
+nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
 
 // * -------------
 // * 테스트 코드 영역
