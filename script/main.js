@@ -166,16 +166,18 @@ const loadSlideBooks = async () => {
     data = await response.json();
     bookList = data.item;
 
+    // todo : 링크는 추후 상세페이지 링크로 수정할 예정(현재 알라딘 링크로 연결됨)
     const slideHTML = bookList
         .map((book) => {
             return `<div class="slide_item">
+            <a href="${book.link}">
         <div class="slide_contents">
             <h2>${book.title}</h2>
             <p>${book.author}</p>
         </div>
         <img
           src="${book.cover}"
-        />
+        /></a>
       </div>`;
         })
         .join('');
