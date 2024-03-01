@@ -14,8 +14,7 @@ const urlProxy = 'corsproxy.io/?'; // ! 프록시 서버 주소 (아래 urlAPI �
 
 // ? 알라딘 ItemSearch 주소
 // ? 알라딘 상품 검색 - 상세 검색 / 검색 결과 창
-const urlAPI_ItemSearch =
-    urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
+const urlAPI_ItemSearch = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
 
 // ? 쿼리 영역 - ItemSearch
 
@@ -57,8 +56,7 @@ let ItemSearch_version = '20131101';
 
 // ? 알라딘 ItemList 주소
 // ? 상품 리스트 API - 추천도서 / 신간 / 베스트 셀러 등
-const urlAPI_ItemList =
-    urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
+const urlAPI_ItemList = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
 
 // ? 쿼리 영역 - ItemList
 
@@ -81,8 +79,7 @@ const urlAPI_ItemList =
 
 // ? 알라딘 ItemLookUp 주소
 // ? 상품 조회 API - 상품 상세 정보
-const urlAPI_ItemLookUp =
-    urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
+const urlAPI_ItemLookUp = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
 
 // ? 쿼리 영역 - ItemLookUp
 
@@ -156,9 +153,7 @@ const getList = async () => {
 
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
-    const url = new URL(
-        `https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey}`
-    );
+    const url = new URL(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${ttbKey_ONDAL}`);
     url.searchParams.set('QueryType', 'ItemEditorChoice');
     url.searchParams.set('CategoryId', 1); //소설
     url.searchParams.set('MaxResults', 5);
@@ -215,17 +210,13 @@ const updateWidth = () => {
     let currentSlides = document.querySelectorAll('.slides .slide_item');
     let newSlideCount = currentSlides.length;
 
-    let newWidth =
-        (slideWidth + slideMargin) * newSlideCount - slideMargin + 'px';
+    let newWidth = (slideWidth + slideMargin) * newSlideCount - slideMargin + 'px';
     slides.style.width = newWidth;
 };
 
 //초기 위치 세팅
 const setInitialPosition = () => {
-    let initialTranslateValue = -(
-        (slideWidth + slideMargin) *
-        slideItem.length
-    );
+    let initialTranslateValue = -((slideWidth + slideMargin) * slideItem.length);
     slides.style.transform = `translateX(${initialTranslateValue}px)`;
 };
 
@@ -288,10 +279,6 @@ const getRandomBooks = () => {
 
 const getRandomOneBook = () => {
     console.log('function getRandomOneBook called');
-};
-
-const getListByKeyword = () => {
-    console.log('function getListByKeyword called');
 };
 
 const getListByKeyword = () => {
