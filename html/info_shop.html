@@ -4,16 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>매장 안내</title>
-    <link href="/css/style.css" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQP7m2vPow9EWl09VFT01lyVJQWYTAvAM"></script>
+    <!-- ! scss 파일에 코드를 넣으니 적용이 안 돼요
+         ! 우선 이 html 안에 스타일을 설정해두었습니다.
+         ! 추후 방법을 익히면 이동시켜두겠습니다 ! -->
+    <style>
+    #map {
+        height: 400px;
+        width: 60%;
+        margin: 100px auto 20px;
+    }
+    #title {
+        text-align: center;
+        margin-top: 50px;
+    }
+    #nameColor {
+        color : rgb(98, 120, 194);
+        font-size : 27px;
+    }
 
+    #locationInfo {
+        position: relative; 
+        text-align: center; 
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #locationInfo::before {
+        content: '';
+        display: block;
+        border-bottom: 1px solid #ccc;
+        margin: 0 auto; 
+        width: 70%; 
+        position: absolute; 
+        bottom: 0;
+        left: 0; 
+        right: 0; 
+    }
+    .info_item {
+        margin-bottom: 10px;
+    }
+    .info_item h2 {
+        margin-bottom: 5px;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    .info_item p {
+        font-size: 16px;
+    }
+
+    #subInfo {
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-around;
+    }
+    .sub_item {
+        font-weight: bold;
+    }   
+    </style>
+</head>
 <!-- ! 매장 안내 -->
 <!-- todo: 찾아오시는 길 적용 사항만 먼저 반영 -->
-
 <body>
-    <p><a class="text_red" href="/index.html"> > Home으로 돌아가기</a></p>
-    <main class="page_customer_service">
-    </main>
+    <p><a class="text_red" href="../index.html"> > Home으로 돌아가기</a></p>
+    <h2 id="title"><span id="nameColor">Team20</span> 오시는 길</h2>
+    <div id="map"></div>
+
+    <section id="locationInfo">
+        <div class="info_item">
+            <h2>주소</h2>
+            <p>경기도 고양시 일산동구 호수로 817</p>
+        </div>
+        <div class="info_item">
+            <h2>연락처</h2>
+            <p>010-1234-5678</p>
+            <h2>이메일</h2>
+            <p>info@example.com</p>
+        </div>
+    </section>
+
+    <section id="subInfo">
+        <div class="sub_item">도보 이용 시 
+        </div>
+        <div class="sub_item">버스 이용 시
+
+        </div>
+    </section>
+<!-- ? 스크립트 파일은 모두 main.js에 넣으면 될 지 아니면 따로 기능별 스크립트 파일을 만들지 아직 모름 -->
+    <script>
+        var mapElement = document.getElementById('map');
+
+        var map = new google.maps.Map(mapElement, {
+            center: {lat:  37.6609, lng: 126.7986}, 
+            zoom: 15
+        });
+
+        var marker = new google.maps.Marker({
+            position: {lat: 37.6609, lng: 126.7986}, 
+            map: map,
+            title: 'Team20 위치' 
+        });
+    </script>
     <script src="/script/main.js"></script>  
 </body>
 </html>
