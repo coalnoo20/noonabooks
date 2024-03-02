@@ -117,6 +117,8 @@ let callback = [];
 
 let data = '';
 
+// ! html control (object)
+
 // * HOME 슬라이드 관련 변수
 let slides = document.querySelector('.slides');
 
@@ -132,7 +134,7 @@ let prevBtn = document.querySelector('.prev');
 
 let nextBtn = document.querySelector('.next');
 
-// ! html control (object)
+const pathNow = window.location.pathname; // ! 현재 윈도우의 경로 체크용
 
 // * -------------
 // * 함수 영역 -일반
@@ -384,8 +386,13 @@ const moveSlide = (num) => {
     }
 };
 
-prevBtn.addEventListener('click', () => moveSlide(currentIdx - 1));
-nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
+// ? addEventListener를 함수로 감싸 특정 페이지에서만 호출하여 사용 (최하단 확인)
+// ! 페이지 이동시 해당 요소를 찾지 못한 addEventListner로 인해 에러 출력되는 문제 해결용
+
+const slideControlSetup = () => {
+    prevBtn.addEventListener('click', () => moveSlide(currentIdx - 1));
+    nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
+};
 
 // * -------------
 // * 테스트 코드 영역
@@ -437,6 +444,19 @@ const getListByKeyword = () => {
 // * -------------
 // ! 페이지 로드 후 실행이 필요한 기능
 
-loadSlideBooks();
-renderReviews(); // 리뷰 렌더링
+if (pathNow === '/index.html' || pathNow === '/') {
+    slideControlSetup();
+    loadSlideBooks();
+} else if (pathNow === '/html/item_detail.html') {
+    renderReviews(); // 리뷰 렌더링
+} else if (pathNow === '/html/search_result.html') {
+    console.log(pathNow);
+} else if (pathNow === '/html/purchase.html') {
+    console.log(pathNow);
+} else if (pathNow === '/html/info_shop.html') {
+    console.log(pathNow);
+} else {
+    console.log('해당 페이지에 대한 렌더링 함수가 없습니다.');
+}
+
 console.log('start-update');
