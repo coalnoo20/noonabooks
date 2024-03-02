@@ -237,24 +237,41 @@ header h1 {
   border: solid 1px #373ea5;
 }
 .page_home .home_easy_search {
+  width: 1280px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
+}
+.page_home .home_easy_search .search_bar {
+  width: 940px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   margin: 1em 0;
+  background: #edeef0;
+  border-radius: 100px;
+  padding-left: 20px;
 }
-.page_home .home_easy_search .easy_input {
-  width: 500px;
-  height: 50px;
-  padding: 1em;
-  font-size: 18px;
-  margin-right: 0.6em;
-}
-.page_home .home_easy_search .search_btn {
+.page_home .home_easy_search .search_bar .easy_input {
+  flex: 1;
   border: none;
-  background: none;
+  outline: none;
+  background: transparent;
+  padding: 1.2em;
+  font-size: 16px;
+}
+.page_home .home_easy_search .search_bar .search_btn {
+  border: none;
+  outline: none;
+  padding: 1.2em 4em;
+  background: #373ea5;
+  color: #ffffff;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 16px;
 }
 .page_home .main_recommend {
-  margin-top: 120px;
+  margin-top: 80px;
   border-bottom: solid 1px #333;
 }
 .page_home .main_recommend .title {
@@ -426,4 +443,4 @@ header h1 {
   padding: 30px;
   border: solid 1px #b8b8b8;
   border-radius: 10px;
-}
+}/*# sourceMappingURL=style.css.map */
