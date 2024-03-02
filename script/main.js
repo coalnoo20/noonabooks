@@ -394,6 +394,20 @@ const slideControlSetup = () => {
     nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
 };
 
+// ! google map api
+var mapElement = document.getElementById('map');
+
+var map = new google.maps.Map(mapElement, {
+    center: { lat: 37.6609, lng: 126.7986 },
+    zoom: 15,
+});
+
+var marker = new google.maps.Marker({
+    position: { lat: 37.6609, lng: 126.7986 },
+    map: map,
+    title: 'Team20 위치',
+});
+
 // * -------------
 // * 테스트 코드 영역
 // * -------------

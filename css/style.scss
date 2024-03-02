@@ -82,6 +82,13 @@
         src: local("OldLondonAlternate"), url("../fonts/OldLondonAlternate.woff") format("woff"), url("../fonts/OldLondonAlternate.ttf") format("truetype");
     }
 
+    @font-face {
+        font-family: 'yg-jalnan';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
   //! 폰트 패밀리 Mixin 설정
 
     @mixin font_NanumR($font_size:20px) {
@@ -332,7 +339,92 @@
     // * 개별 페이지 설정 - 8. 고객센터 / FAQ (customer_service)
 
     // * 개별 페이지 설정 - 9. 매장안내 (info_shop) / 담당자 (지현)
-
+    .map_container {
+        font-family: "Noto Sans KR", sans-serif;
+        margin-bottom: 30px;
+      
+        .map_title {
+          font-family: "yg-jalnan";
+          text-align: center;
+          margin-top: 50px;
+          color: #5d5f66;
+        }
+      
+        .name_color {
+          color: rgb(88, 123, 219);
+        }
+      
+        hr {
+          border: none;
+          height: 1.5px;
+          background-color: #dfdddd;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          margin: 20px 0;
+        }
+        #map {
+          height: 400px;
+          width: 60%;
+          margin: 20px auto;
+          border-radius: 4px;
+        }
+      
+        .location_info {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 30px auto;
+        }
+      
+        .info_item h2 {
+          font-size: 20px;
+          margin-bottom: 5px;
+        }
+      
+        .info_item {
+          padding: 20px;
+        }
+      
+        .info_item p {
+          font-size: 16px;
+        }
+      
+        .sub_info {
+          display: flex;
+          align-items: center;
+          text-align: left;
+          justify-content: space-between;
+          margin-top: 20px;
+        }
+      
+        .sub_info .sub_item {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        .add_position {
+          position: relative;
+          bottom: 118px;
+          padding-left: 20px;
+        }
+        .sub_info h2 {
+          font-size: 20px;
+        }
+        .span_bold {
+          font-weight: bold;
+        }
+        .bxs-bus {
+          font-size: 25px;
+          position: relative;
+          top: 5px;
+          color: #da8d36;
+        }
+      
+        .fa-train-subway {
+          font-size: 21px;
+          position: relative;
+          bottom: -2px;
+          color: #3e9462;
+        }
+      }
     // * 개별 페이지 설정 - 99. Test 페이지 (api_test)
 
 

@@ -10,5 +10,6 @@
     "prettier.trailingComma": "es5",
     "prettier.bracketSpacing": true,
     "prettier.arrowParens": "always",
-    "prettier.embeddedLanguageFormatting": "auto"
+    "prettier.embeddedLanguageFormatting": "auto",
+    "liveServer.settings.CustomBrowser": "chrome"
 }
