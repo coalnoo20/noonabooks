@@ -108,6 +108,16 @@ body {
   color: seagreen;
 }
 
+header {
+  margin: 20px;
+}
+header h1 {
+  padding: 10px;
+  font-family: "NanumDaSiSiJagHae";
+  font-size: 80px;
+  color: #333;
+}
+
 .page_home {
   margin: 20px;
 }
@@ -132,11 +142,15 @@ body {
 .page_home footer nav {
   display: flex;
   justify-content: center;
-  width: 700px;
-  min-width: 350px;
+  width: auto;
   height: 80px;
-  background-color: rgba(207, 207, 207, 0.4784313725);
+  background-color: rgba(214, 214, 214, 0.4784313725);
   border-radius: 20px;
+  padding: 10px 20px;
+}
+.page_home footer nav i {
+  color: #747474;
+  font-size: 20px;
 }
 .page_home footer nav ul {
   display: flex;
@@ -145,9 +159,17 @@ body {
   align-items: center;
 }
 .page_home footer nav ul li {
-  background-color: #bdbdbd;
+  background-color: #cecece;
+  border: solid 2px #b1b0b0;
   border-radius: 10px;
-  padding: 10px 5px;
+  padding: 10px 15px;
+  font-family: "NanumSquareB";
+  font-size: 20px;
+  color: #7c7c7c;
+  letter-spacing: 1px;
+}
+.page_home footer nav ul li:hover {
+  opacity: 0.7;
 }
 .page_home .main_editor, .page_home .main_test {
   height: 800px;
@@ -248,6 +270,82 @@ body {
   display: flex;
   justify-content: center;
   margin: 1em;
+}
+
+.map_container {
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0px auto 30px;
+  width: 50%;
+}
+.map_container .map_title {
+  font-family: "yg-jalnan";
+  text-align: center;
+  color: #5d5f66;
+}
+.map_container .name_color {
+  color: rgb(88, 123, 219);
+}
+.map_container hr {
+  border: none;
+  height: 1.5px;
+  background-color: #dfdddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 20px 0;
+}
+.map_container #map {
+  height: 400px;
+  width: 60%;
+  margin: 20px auto;
+  border-radius: 4px;
+}
+.map_container .location_info {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin: 30px auto 0px;
+  gap: 30px;
+}
+.map_container .info_item h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.map_container .info_item {
+  padding: 30px;
+}
+.map_container .info_item p {
+  font-size: 16px;
+}
+.map_container .sub_info {
+  display: flex;
+  align-items: start;
+  text-align: left;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 60px;
+}
+.map_container .sub_info .sub_item {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 40%;
+  padding: 10px 30px;
+}
+.map_container .sub_info h2 {
+  font-size: 20px;
+}
+.map_container .span_bold {
+  font-weight: bold;
+}
+.map_container .bxs-bus {
+  font-size: 25px;
+  position: relative;
+  top: 5px;
+  color: #da8d36;
+}
+.map_container .fa-train-subway {
+  font-size: 21px;
+  position: relative;
+  bottom: -2px;
+  color: #3e9462;
 }
 
 .page_api_test {
