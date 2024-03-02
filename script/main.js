@@ -104,6 +104,8 @@ let ItemLookUp_Version = '20131101';
 
 const ttbKey_ONDAL = `ttblusci2359001`; // ! TTB key - 원종
 const ttbKey_LUNA = `ttblhyasd2323001`; // ! TTB key - 혜영
+const ttbKey_JIHYEON = 'ttbrlawlgus09150054001'; // ! TTB key - 지현
+const ttbKey_HY = `ttbgkdud98702321001`; // ! TTB key - 하영
 
 let urlTest = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_ONDAL}`);
 
@@ -310,12 +312,29 @@ const cancelEdit = () => {
     document.getElementById('review-rating').value = '';
 };
 
-// 초기 렌더링
-renderReviews();
+// ! HOME 빠른 검색
+const easySearchBooks = async () => {
+    const easyKeyword = document.getElementById('easy_keyword').value;
+
+    const urlEasySearch = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_HY}`);
+    urlEasySearch.searchParams.set('Query', easyKeyword);
+    urlEasySearch.searchParams.set('QueryType', 'Keyword');
+    urlEasySearch.searchParams.set('SearchTarget', 'Book');
+    urlEasySearch.searchParams.set('output', 'js');
+    urlEasySearch.searchParams.set('Version', 20131101);
+    urlEasySearch.searchParams.set('Cover', 'Big');
+
+    const response = await fetch(urlEasySearch);
+    data = await response.json();
+    bookList = data.item;
+
+    // console.log(data);
+    location.href = data.link; // todo : 링크는 추후 상세 검색 리스트 페이지로 수정할 예정
+};
 
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
-    const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_ONDAL}`);
+    const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
     urlSlide.searchParams.set('QueryType', 'ItemEditorChoice');
     urlSlide.searchParams.set('CategoryId', 1); //소설
     urlSlide.searchParams.set('MaxResults', 10);
@@ -412,6 +431,42 @@ const slideControlSetup = () => {
     nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
 };
 
+// ! 구매 페이지 (상세 페이지쪽과 상의 필요)
+// 알라딘 API에서 받아올 상품 번호 임시 데이터
+
+const purchase = () => {
+    const itemIsbn = 'K222938801';
+
+    fetch(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ttbKey_JIHYEON}&itemIdType=ISBN&ItemId=${itemIsbn}&output=js&Version=20131101`)
+        .then((response) => response.json())
+        .then((data) => {
+            // 'item' 키가 있는지 확인
+            if (data.item && Array.isArray(data.item) && data.item.length > 0) {
+                const itemInfo = data.item[0];
+                const bookTitle = itemInfo.title;
+                const author = itemInfo.author;
+                const publisher = itemInfo.publisher;
+                const price = itemInfo.priceStandard;
+                const coverUrl = itemInfo.cover;
+
+                // HTML에 업데이트
+                document.getElementById('book-title').innerText = bookTitle;
+                document.getElementById('author').innerText = author;
+                document.getElementById('publisher').innerText = publisher;
+                document.getElementById('price').innerText = price;
+                document.getElementById('book-cover').src = coverUrl;
+            } else {
+                console.error('No item found in response:', data);
+            }
+        })
+        .catch((error) => console.error('Error:', error));
+
+    document.getElementById('confirm-purchase').addEventListener('click', function () {
+        alert('바로 구매가 완료되었습니다!');
+        window.location = '../index.html';
+    });
+};
+
 // * -------------
 // * 테스트 코드 영역
 // * -------------
@@ -471,8 +526,24 @@ if (pathNow === '/index.html' || pathNow === '/') {
     console.log(pathNow);
 } else if (pathNow === '/html/purchase.html') {
     console.log(pathNow);
+    purchase();
 } else if (pathNow === '/html/info_shop.html') {
     console.log(pathNow);
+
+    // ! google map api
+
+    const mapElement = document.getElementById('map');
+
+    const map = new google.maps.Map(mapElement, {
+        center: { lat: 37.65816, lng: 126.7635 },
+        zoom: 15,
+    });
+
+    const marker = new google.maps.Marker({
+        position: { lat: 37.65816, lng: 126.7635 },
+        map: map,
+        title: 'Team20 위치',
+    });
 } else {
     console.log('해당 페이지에 대한 렌더링 함수가 없습니다.');
 }

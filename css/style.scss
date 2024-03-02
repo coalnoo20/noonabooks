@@ -171,6 +171,18 @@
 // * 개별 페이지 설정 영역
 // ! 개별 페이지별 설정 - 메인 담당자 외 작업 추가되는 경우 반드시 ONDAL 및 담당자에 노티 해주세요.
 
+    // * 헤더 (메인/인포 사용)
+    header {
+        margin: 20px;
+        
+        h1 {
+            padding: 10px;
+            @include font_NanumS(80px);
+            color: #333;
+        }
+    }
+
+
     // * 개별 페이지 설정 - 0. 메인화면 (home = index.html) / 담당자 (원종, 하영)
 
     .page_home {
@@ -198,11 +210,16 @@
             nav {
                 display: flex;
                 justify-content: center;
-                width: 700px;
-                min-width: 350px;
+                width: auto;
                 height: 80px;
-                background-color: #cfcfcf7a;
+                background-color: #d6d6d67a;
                 border-radius: 20px;
+                padding: 10px 20px;
+
+                i {
+                    color: #747474;
+                    font-size: 20px;
+                }
 
                 ul {
                     display: flex;
@@ -211,9 +228,17 @@
                     align-items: center;
 
                     li {
-                        background-color: #bdbdbd;
+                        background-color: #cecece;
+                        border: solid 2px #b1b0b0;
                         border-radius: 10px;
-                        padding: 10px 5px;
+                        padding: 10px 15px;
+                        @include font_NanumB(20px);
+                        color: #7c7c7c;
+                        letter-spacing: 1px;
+
+                        &:hover {
+                            opacity: 0.7;
+                        }
                     }
                 }
                 
@@ -225,10 +250,35 @@
             border: solid 1px #373ea5;
         }
 
+        .home_easy_search{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1em 0;
+
+            .easy_input{
+                width: 500px;
+                height: 50px;
+                padding: 1em;
+                font-size: 18px;
+                margin-right: 0.6em;
+            }
+
+            .search_btn{
+                border: none;
+                background: none;
+            }
+        }
+
         .home_proto {
             // ? 위치 조정 및 경계 확인용
             margin-top: 120px;
             border-bottom: solid 1px #333;
+
+            .main_recommend{
+                text-align: center;
+                margin: 2em 0;
+            }
 
             // ? 하영님 작업 영역
             .slide_wrapper {
@@ -484,7 +534,98 @@
     // * 개별 페이지 설정 - 8. 고객센터 / FAQ (customer_service)
 
     // * 개별 페이지 설정 - 9. 매장안내 (info_shop) / 담당자 (지현)
+    .map_container {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0px auto 30px;
+        width: 50%;
 
+        .map_title {
+          font-family: "yg-jalnan";
+          text-align: center;
+        //   margin-top: 50px;
+          color: #5d5f66;
+        }
+      
+        .name_color {
+          color: rgb(88, 123, 219);
+        }
+      
+        hr {
+          border: none;
+          height: 1.5px;
+          background-color: #dfdddd;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          margin: 20px 0;
+        }
+        #map {
+          height: 400px;
+          width: 60%;
+          margin: 20px auto;
+          border-radius: 4px;
+        }
+      
+        .location_info {
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          margin: 30px auto 0px;
+          gap:30px;
+        }
+      
+        .info_item h2 {
+          font-size: 20px;
+          margin-bottom: 5px;
+        }
+      
+        .info_item {
+          padding: 30px;
+        }
+      
+        .info_item p {
+          font-size: 16px;
+        }
+      
+        .sub_info {
+          display: flex;
+          align-items: start;
+          text-align: left;
+          justify-content: space-around;
+          margin-top: 20px;
+          gap:60px;
+
+          .sub_item {
+            margin-left: 20px;
+            margin-right: 20px;
+            width:40%;
+            padding: 10px 30px;
+          }
+
+        }
+
+        .sub_item:nth-child(1) {
+            // margin-left: 50px;
+        }
+
+        .sub_info h2 {
+          font-size: 20px;
+        }
+        .span_bold {
+          font-weight: bold;
+        }
+        .bxs-bus {
+          font-size: 25px;
+          position: relative;
+          top: 5px;
+          color: #da8d36;
+        }
+      
+        .fa-train-subway {
+          font-size: 21px;
+          position: relative;
+          bottom: -2px;
+          color: #3e9462;
+        }
+      }
     // * 개별 페이지 설정 - 99. Test 페이지 (api_test)
 
 
