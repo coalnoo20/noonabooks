@@ -108,6 +108,24 @@ body {
   color: seagreen;
 }
 
+.text_cyon {
+  color: #61fff2;
+}
+
+.text_cyon2 {
+  color: #3ca79e;
+}
+
+.text_40 {
+  font-size: 40px;
+  font-style: italic;
+}
+
+.text_50 {
+  font-size: 50px;
+  font-style: italic;
+}
+
 header {
   margin: 20px;
 }
@@ -171,7 +189,50 @@ header h1 {
 .page_home footer nav ul li:hover {
   opacity: 0.7;
 }
-.page_home .main_editor, .page_home .main_test {
+.page_home .main_editor {
+  background: #252451;
+  color: #c93535;
+  text-align: center;
+  font-family: "NanumDaSiSiJagHae";
+  font-size: 70px;
+  padding-top: 100px;
+}
+.page_home .main_editor .box_editor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1300px;
+  margin: 0px auto 0px;
+  padding: 100px 20px 200px;
+  gap: 100px;
+  text-align: start;
+}
+.page_home .main_editor .editor_text {
+  width: 700px;
+  color: #dfdfdf;
+  font-family: "NanumSquareB";
+  font-size: 30px;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  line-height: 55px;
+}
+.page_home .main_editor h2 {
+  color: #e7e9e8;
+  font-family: "NanumSquareB";
+  font-size: 60px;
+  margin-bottom: 30px;
+}
+.page_home .main_editor .text_spacing {
+  padding-left: 40px;
+  border-top: solid 5px #4d4b9e;
+}
+.page_home .main_editor .editor_img img {
+  width: 500px;
+  height: 742px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page_home .main_test {
   height: 800px;
   border: solid 1px #373ea5;
 }
@@ -499,4 +560,4 @@ header h1 {
   padding: 30px;
   border: solid 1px #b8b8b8;
   border-radius: 10px;
-}/*# sourceMappingURL=style.css.map */
+}
