@@ -1,113 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>매장 안내</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://kit.fontawesome.com/de18e820f6.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQP7m2vPow9EWl09VFT01lyVJQWYTAvAM"></script>
-    <!-- ! scss 파일에 코드를 넣으니 적용이 안 돼요
-         ! 우선 이 html 안에 스타일을 설정해두었습니다.
-         ! 추후 방법을 익히면 이동시켜두겠습니다 ! -->
-    <style>
-    #map {
-        height: 400px;
-        width: 60%;
-        margin: 100px auto 20px;
-    }
-    #title {
-        text-align: center;
-        margin-top: 50px;
-    }
-    #nameColor {
-        color : rgb(98, 120, 194);
-        font-size : 27px;
-    }
+  </head>
+  <!-- ! 매장 안내 -->
+  <body>
+    <main class="map_container">
+      <header>
+        <h1 class="map_title"><span class="name_color">Team20</span> 오시는 길</h1>
+      </header>
 
-    #locationInfo {
-        position: relative; 
-        text-align: center; 
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-around;
-    }
+      <div id="map"></div>
 
-    #locationInfo::before {
-        content: '';
-        display: block;
-        border-bottom: 1px solid #ccc;
-        margin: 0 auto; 
-        width: 70%; 
-        position: absolute; 
-        bottom: 0;
-        left: 0; 
-        right: 0; 
-    }
-    .info_item {
-        margin-bottom: 10px;
-    }
-    .info_item h2 {
-        margin-bottom: 5px;
-        font-size: 18px;
-        text-align: left;
-    }
-
-    .info_item p {
-        font-size: 16px;
-    }
-
-    #subInfo {
-        margin: 20px auto;
-        display: flex;
-        justify-content: space-around;
-    }
-    .sub_item {
-        font-weight: bold;
-    }   
-    </style>
-</head>
-<!-- ! 매장 안내 -->
-<!-- todo: 찾아오시는 길 적용 사항만 먼저 반영 -->
-<body>
-    <p><a class="text_red" href="../index.html"> > Home으로 돌아가기</a></p>
-    <h2 id="title"><span id="nameColor">Team20</span> 오시는 길</h2>
-    <div id="map"></div>
-
-    <section id="locationInfo">
+      <section class="location_info">
         <div class="info_item">
-            <h2>주소</h2>
-            <p>경기도 고양시 일산동구 호수로 817</p>
+          <h2>주소</h2>
+          <p>경기 고양시 일산동구 호수로 595</p>
         </div>
         <div class="info_item">
-            <h2>연락처</h2>
-            <p>010-1234-5678</p>
-            <h2>이메일</h2>
-            <p>info@example.com</p>
+          <h2>연락처</h2>
+          <p>010-1234-5678</p>
+          <h2>이메일</h2>
+          <p>info@example.com</p>
         </div>
-    </section>
-
-    <section id="subInfo">
-        <div class="sub_item">도보 이용 시 
+        <div class="info_item">
+          <h2>영업시간</h2>
+          <p>(시간이 달라질 수 있음)<br />월요일 ~ 일요일 오전 10:00~오후 10:00</p>
         </div>
-        <div class="sub_item">버스 이용 시
-
+      </section>
+      <hr />
+      <section class="sub_info">
+        <div class="sub_item add_position">
+          <h3><i class="fa-solid fa-train-subway"></i> 지하철 이용 시</h3>
+          <br />
+          <p>정발산역(3호선 대화행)하차, 1번 출구 일산호수공원 방향 도보 10분거리</p>
         </div>
-    </section>
-<!-- ? 스크립트 파일은 모두 main.js에 넣으면 될 지 아니면 따로 기능별 스크립트 파일을 만들지 아직 모름 -->
-    <script>
-        var mapElement = document.getElementById('map');
-
-        var map = new google.maps.Map(mapElement, {
-            center: {lat:  37.6609, lng: 126.7986}, 
-            zoom: 15
-        });
-
-        var marker = new google.maps.Marker({
-            position: {lat: 37.6609, lng: 126.7986}, 
-            map: map,
-            title: 'Team20 위치' 
-        });
-    </script>
-    <script src="/script/main.js"></script>  
-</body>
+        <div class="sub_item">
+          <h3><i class="bx bxs-bus"></i> 버스 이용 시</h3>
+          <br />
+          <p>
+            <i class="bx bx-street-view"></i
+            ><span class="span_bold">일산동구청(정발산역) 하차, 일산호수공원 방향 도보10분거리</span
+            ><br /><br />
+            3300(인천공항), 56, 150(김포공항), 72, 77, 7727(신촌), <br />
+            830, 1500, 9707,M7646(영등포),707, 1000, 1100, 9701, <br />
+            9714, M7106, M7119(서울역), 9700, M7412, 9711(강남역), 66(DMC역),<br />
+            96(강화군청), 97(김포대학교), 108(여의도역), 200(홍대입구역), <br />
+            773(불광역), 5000(부천터미널), 8109(분당구 오리역) 등<br /><br />
+            <i class="bx bx-street-view"></i
+            ><span class="span_bold">일산호수공원 하차 도보 3분거리</span><br /><br />
+            3000, 3030(인천터미널), 7300(김포공항)
+          </p>
+        </div>
+      </section>
+    </main>
+    <script src="../script/main.js"></script>
+  </body>
 </html>

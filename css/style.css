@@ -170,7 +170,8 @@ body {
 .page_home .home_proto .slide_wrapper .slides .slide_item:hover img {
   opacity: 0.2;
 }
-.page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents h2, .page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents p {
+.page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents h2,
+.page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents p {
   display: block;
   opacity: 1;
 }
@@ -184,6 +185,83 @@ body {
   display: flex;
   justify-content: center;
   margin: 1em;
+}
+
+.map_container {
+  font-family: "Noto Sans KR", sans-serif;
+  margin-bottom: 30px;
+}
+.map_container .map_title {
+  font-family: "yg-jalnan";
+  text-align: center;
+  margin-top: 50px;
+  color: #5d5f66;
+}
+.map_container .name_color {
+  color: rgb(88, 123, 219);
+}
+.map_container hr {
+  border: none;
+  height: 1.5px;
+  background-color: #dfdddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 20px 0;
+}
+.map_container #map {
+  height: 400px;
+  width: 60%;
+  margin: 20px auto;
+  border-radius: 4px;
+}
+.map_container .location_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+}
+.map_container .info_item h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.map_container .info_item {
+  padding: 20px;
+}
+.map_container .info_item p {
+  font-size: 16px;
+}
+.map_container .sub_info {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.map_container .sub_info .sub_item {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.map_container .add_position {
+  position: relative;
+  bottom: 102px;
+  padding-left: 20px;
+}
+.map_container .sub_info h2 {
+  font-size: 20px;
+}
+.map_container .span_bold {
+  font-weight: bold;
+}
+.map_container .bxs-bus {
+  font-size: 25px;
+  position: relative;
+  top: 5px;
+  color: #da8d36;
+}
+.map_container .fa-train-subway {
+  font-size: 21px;
+  position: relative;
+  bottom: -2px;
+  color: #3e9462;
 }
 
 .page_api_test {
@@ -203,4 +281,4 @@ body {
   padding: 30px;
   border: solid 1px #b8b8b8;
   border-radius: 10px;
-}/*# sourceMappingURL=style.css.map */
+}
