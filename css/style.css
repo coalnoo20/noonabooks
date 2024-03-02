@@ -219,7 +219,8 @@ body {
 .page_home .home_proto .slide_wrapper .slides .slide_item:hover img {
   opacity: 0.2;
 }
-.page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents h2, .page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents p {
+.page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents h2,
+.page_home .home_proto .slide_wrapper .slides .slide_item:hover .slide_contents p {
   display: block;
   opacity: 1;
 }
@@ -290,7 +291,11 @@ body {
 }
 .map_container .add_position {
   position: relative;
+<<<<<<< HEAD
   bottom: 118px;
+=======
+  bottom: 102px;
+>>>>>>> 7dbd50df3f82f55bd3aca2d15c69006128a7312e
   padding-left: 20px;
 }
 .map_container .sub_info h2 {
@@ -329,4 +334,4 @@ body {
   padding: 30px;
   border: solid 1px #b8b8b8;
   border-radius: 10px;
-}/*# sourceMappingURL=style.css.map */
+}
