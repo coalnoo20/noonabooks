@@ -301,19 +301,20 @@ const cancelEdit = () => {
 const easySearchBooks = async () => {
     const easyKeyword = document.getElementById('easy_keyword').value;
 
-    const urlEasySearch = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
-    urlSlide.searchParams.set('Query', easyKeyword);
-    urlSlide.searchParams.set('QueryType', 'Keyword');
-    urlSlide.searchParams.set('SearchTarget', 'Book');
-    urlSlide.searchParams.set('output', 'js');
-    urlSlide.searchParams.set('Version', 20131101);
-    urlSlide.searchParams.set('Cover', 'Big');
+    const urlEasySearch = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_HY}`);
+    urlEasySearch.searchParams.set('Query', easyKeyword);
+    urlEasySearch.searchParams.set('QueryType', 'Keyword');
+    urlEasySearch.searchParams.set('SearchTarget', 'Book');
+    urlEasySearch.searchParams.set('output', 'js');
+    urlEasySearch.searchParams.set('Version', 20131101);
+    urlEasySearch.searchParams.set('Cover', 'Big');
 
-    const response = await fetch(urlSlide);
+    const response = await fetch(urlEasySearch);
     data = await response.json();
     bookList = data.item;
 
-    console.log(bookList);
+    // console.log(data);
+    location.href = data.link; // todo : 링크는 추후 상세 검색 리스트 페이지로 수정할 예정
 };
 
 // ! HOME 슬라이드 추천도서 가져오기
