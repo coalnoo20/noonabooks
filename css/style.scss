@@ -198,11 +198,16 @@
             nav {
                 display: flex;
                 justify-content: center;
-                width: 700px;
-                min-width: 350px;
+                width: auto;
                 height: 80px;
-                background-color: #cfcfcf7a;
+                background-color: #d6d6d67a;
                 border-radius: 20px;
+                padding: 10px 20px;
+
+                i {
+                    color: #747474;
+                    font-size: 20px;
+                }
 
                 ul {
                     display: flex;
@@ -211,9 +216,17 @@
                     align-items: center;
 
                     li {
-                        background-color: #bdbdbd;
+                        background-color: #cecece;
+                        border: solid 2px #b1b0b0;
                         border-radius: 10px;
-                        padding: 10px 5px;
+                        padding: 10px 15px;
+                        @include font_NanumB(20px);
+                        color: #7c7c7c;
+                        letter-spacing: 1px;
+
+                        &:hover {
+                            opacity: 0.7;
+                        }
                     }
                 }
                 
