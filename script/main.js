@@ -105,6 +105,7 @@ let ItemLookUp_Version = '20131101';
 const ttbKey_ONDAL = `ttblusci2359001`; // ! TTB key - 원종
 const ttbKey_LUNA = `ttblhyasd2323001`; // ! TTB key - 혜영
 const ttbKey_JIHYEON = 'ttbrlawlgus09150054001'; // ! TTB key - 지현
+const ttbKey_HY = `ttbgkdud98702321001`; // ! TTB key - 하영
 
 let urlTest = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_ONDAL}`);
 
@@ -296,9 +297,29 @@ const cancelEdit = () => {
     document.getElementById('review-rating').value = '';
 };
 
+// ! HOME 빠른 검색
+const easySearchBooks = async () => {
+    const easyKeyword = document.getElementById('easy_keyword').value;
+
+    const urlEasySearch = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_HY}`);
+    urlEasySearch.searchParams.set('Query', easyKeyword);
+    urlEasySearch.searchParams.set('QueryType', 'Keyword');
+    urlEasySearch.searchParams.set('SearchTarget', 'Book');
+    urlEasySearch.searchParams.set('output', 'js');
+    urlEasySearch.searchParams.set('Version', 20131101);
+    urlEasySearch.searchParams.set('Cover', 'Big');
+
+    const response = await fetch(urlEasySearch);
+    data = await response.json();
+    bookList = data.item;
+
+    // console.log(data);
+    location.href = data.link; // todo : 링크는 추후 상세 검색 리스트 페이지로 수정할 예정
+};
+
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
-    const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_ONDAL}`);
+    const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
     urlSlide.searchParams.set('QueryType', 'ItemEditorChoice');
     urlSlide.searchParams.set('CategoryId', 1); //소설
     urlSlide.searchParams.set('MaxResults', 10);
