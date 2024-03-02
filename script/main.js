@@ -297,6 +297,25 @@ const cancelEdit = () => {
     document.getElementById('review-rating').value = '';
 };
 
+// ! HOME 빠른 검색
+const easySearchBooks = async () => {
+    const easyKeyword = document.getElementById('easy_keyword').value;
+
+    const urlEasySearch = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
+    urlSlide.searchParams.set('Query', easyKeyword);
+    urlSlide.searchParams.set('QueryType', 'Keyword');
+    urlSlide.searchParams.set('SearchTarget', 'Book');
+    urlSlide.searchParams.set('output', 'js');
+    urlSlide.searchParams.set('Version', 20131101);
+    urlSlide.searchParams.set('Cover', 'Big');
+
+    const response = await fetch(urlSlide);
+    data = await response.json();
+    bookList = data.item;
+
+    console.log(bookList);
+};
+
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
     const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
