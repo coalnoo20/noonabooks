@@ -167,6 +167,24 @@
         color: seagreen;
     }
 
+    .text_cyon {
+        color:#61fff2;
+    }
+
+    .text_cyon2 {
+        color:#3ca79e;
+    }
+
+    .text_40 {
+        font-size: 40px;
+        font-style: italic;
+    }
+
+    .text_50 {
+        font-size: 50px;
+        font-style: italic;
+    }
+
 
 // * 개별 페이지 설정 영역
 // ! 개별 페이지별 설정 - 메인 담당자 외 작업 추가되는 경우 반드시 ONDAL 및 담당자에 노티 해주세요.
@@ -245,7 +263,58 @@
             }
         }
 
-        .main_editor, .main_test {
+        .main_editor {
+            // height: 800px;
+            background: #252451;
+            color: #c93535;
+            text-align: center;
+            @include font_NanumS(70px);
+            padding-top: 100px;
+            // text-decoration:underline;            
+
+            .box_editor {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 1300px;
+                margin: 0px auto 0px;
+                padding: 100px 20px 200px;
+                gap:100px;
+                text-align: start;
+
+            }
+
+            .editor_text {
+                width: 700px;
+                color:#dfdfdf;
+                @include font_NanumB(30px);
+                letter-spacing: 1px;
+                word-spacing: 2px;
+                line-height: 55px;
+            }
+
+            h2 {
+                color: #e7e9e8;
+                @include font_NanumB(60px);
+                margin-bottom: 30px;
+            }
+
+            .text_spacing {
+                padding-left: 40px;
+                border-top: solid 5px #4d4b9e ;
+            }
+
+            .editor_img {
+                img {
+                    width: 500px;
+                    height: 742px;
+                    object-fit: cover;
+                }
+            }
+
+        }
+        
+        .main_test {
             height: 800px;
             border: solid 1px #373ea5;
         }
