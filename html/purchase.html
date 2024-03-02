@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>구매 진행</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://kit.fontawesome.com/de18e820f6.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <link href="/css/style.css" rel="stylesheet">
 </head>
-
 <body>
-    <p><a class="text_red" href="/index.html"> > Home으로 돌아가기</a></p>
-    <main class="page_purchase">        
-        <h2>결제 정보</h2>
+    <main class="page_purchase">
+        <header>
+            <h1 class="purchase_h1"><a href="/index.html">Noona Books</a></h1>
+        </header>        
+        <div>
+        <h2 class="purchase_title">결제 정보</h2>
+        </div>
         <div class="purchase-details">
             <h3>상품 확인</h3>
+            <img id="book-cover" alt="책 표지 이미지">
             <p>책 제목: <span id="book-title"></span></p>
             <p>저자: <span id="author"></span></p>
             <p>출판사: <span id="publisher"></span></p>
             <p>가격: <span id="price"></span></p>
-            <!-- 책 표지 이미지 -->
-            <img id="book-cover" alt="책 표지 이미지">
-            <!-- 구매 확인 버튼 -->
-            <button id="confirm-purchase">구매 확인</button>
+            <button id="confirm-purchase">구매하기</button>
         </div>
+        <div id="resultArea"></div>
     </main>
     <script src="/script/main.js"></script>  
 </body>

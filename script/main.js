@@ -453,7 +453,7 @@ const purchase = () => {
                 document.getElementById('book-title').innerText = bookTitle;
                 document.getElementById('author').innerText = author;
                 document.getElementById('publisher').innerText = publisher;
-                document.getElementById('price').innerText = price;
+                document.getElementById('price').innerText = price + '원';
                 document.getElementById('book-cover').src = coverUrl;
             } else {
                 console.error('No item found in response:', data);
@@ -462,8 +462,14 @@ const purchase = () => {
         .catch((error) => console.error('Error:', error));
 
     document.getElementById('confirm-purchase').addEventListener('click', function () {
-        alert('바로 구매가 완료되었습니다!');
-        window.location = '../index.html';
+        // 랜덤 주문번호 생성
+        const orderNumber = Math.floor(Math.random() * 1000000);
+        alert('구매가 완료되었습니다!');
+        // 주문 완료
+        document.getElementById('resultArea').innerHTML = `
+                <p style="color:green;">고객님의 주문이 성공적으로 완료되었습니다.</p>
+                <p><strong>주문 번호: ${orderNumber}</strong></p>
+            `;
     });
 };
 
