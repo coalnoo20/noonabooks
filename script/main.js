@@ -163,9 +163,11 @@ const getList = async () => {
 };
 
 // ! 알라딘 ItemLookUp 가져오기
-const getItemDetails = async () => {
+const getItemDetails = async (isbn13 = ItemLookUp_ItemId) => {
     let urlDetail = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
     console.log('get item details');
+
+    let ItemLookUp_ItemId = isbn13;
 
     urlDetail.searchParams.set('ItemIdType', ItemLookUp_ItemIdType);
     urlDetail.searchParams.set('ItemId', ItemLookUp_ItemId);
@@ -192,26 +194,37 @@ const displayResults = (results) => {
 
 const createBookElement = (bookInfo) => {
     const bookElement = document.createElement('div');
-    bookElement.innerHTML = `<h2>제목: ${bookInfo.title}</h2>
-        <h3>작가: ${bookInfo.author}</h3>
-        <p>${bookInfo.description.length > 150 ? bookInfo.description.slice(0, 150) : bookInfo.description}...</p>
-        <p>도서 출판날짜: ${bookInfo.pubDate}</p>
-        <p>ISBN: ${bookInfo.isbn}</p>
-        <p>판매 가격: ${bookInfo.priceStandard.toLocaleString('en-US', {
-            currency: 'KRW',
-        })}원</p>
-        <p>할인 가격: ${bookInfo.priceSales.toLocaleString('en-US', {
-            currency: 'KRW',
-        })}원</p>
-        <img src="${bookInfo.cover}" alt="cover"><br>
-        <hr>`;
+    bookElement.classList.add('item-detail'); // 클래스 추가
+
+    bookElement.innerHTML = `
+        <div class="item-detail-img">
+            <img src="${bookInfo.cover}" alt="cover">
+        </div>
+        <div class="item-detail-info">
+            <h2>${bookInfo.title}</h2>
+            <h3>${bookInfo.author}</h3>
+            <p>${bookInfo.description.length > 150 ? bookInfo.description.slice(0, 150) : bookInfo.description}...</p>
+            <p>도서 출판날짜: ${bookInfo.pubDate}</p>
+            <p>ISBN: ${bookInfo.isbn}</p>
+            <p>판매 가격: ${bookInfo.priceStandard.toLocaleString('en-US', {
+                currency: 'KRW',
+            })}원</p>
+            <p>할인 가격: ${bookInfo.priceSales.toLocaleString('en-US', {
+                currency: 'KRW',
+            })}원</p>
+        </div>`;
+
     return bookElement;
 };
 
 // ! 리뷰 작성 CRUD
 let reviews = [
-    { id: 1, text: 'Great product!', rating: 5 },
-    { id: 2, text: 'Could be better', rating: 3 },
+    {
+        id: 1,
+        text: '책은 재미가 없으면 읽는게 고문입니다. 아무리 좋은 책도 재미가 있어야 공부도 되고 교훈도 되는데,재미+감동+띄어쓰기 공부 모두를 만족합니다.아이디어도 뛰어나고(작가님 천재인듯) 감동받아서 눈물날 뻔. 아이에게 읽혀 주면서 둘 다 감동 받았어요. 그리고 너무 재미 있어요!!! 같은 시리즈 "받침구조대"도 바로 사러 갑니다. 그리고 소장가치가 있어 주위에 널리 널리 알리고 싶어지네요. 근데 아이가 또 보자고 하넵요 ㅠㅠ',
+        rating: 5,
+    },
+    { id: 2, text: '아이 키우는 엄마들은 꼭 샀으면 하는 책이에요 띄어쓰기를 어쩜 이렇게 재치있게 풀어냈는지.. 아이가 너무 재밌어하네요. 추천합니다^^ ', rating: 3 },
 ];
 
 let editingReviewId = null;
@@ -222,9 +235,11 @@ const renderReviews = () => {
 
     reviews.forEach((review) => {
         const li = document.createElement('li');
-        li.innerHTML = `<strong>평점:</strong> ${review.rating}, <span>${review.text}</span> 
-                      <button onclick="editReview(${review.id})">수정</button>
-                      <button onclick="deleteReview(${review.id})">삭제</button>`;
+        li.classList.add('review-item');
+        li.innerHTML = `<div class="review-content"><div class="review-info"><strong>평점:</strong> ${'⭐'.repeat(review.rating)}</div>
+                        <div><span>${review.text}</span></div></div> 
+                        <div class="review-button"><button onclick="editReview(${review.id})" class="button">수정</button>
+                        <button onclick="deleteReview(${review.id})" class="button">삭제</button></div>`;
         reviewList.appendChild(li);
     });
 };

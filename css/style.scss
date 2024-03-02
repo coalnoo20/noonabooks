@@ -443,6 +443,158 @@
     // * 개별 페이지 설정 - 1. 상세 검색창 (search_result)
 
     // * 개별 페이지 설정 - 2. 제품 상세창 (item_detail)
+.page_item_detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .item-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd; 
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .item-detail-img img {
+    min-width: 250px;
+    max-width: 100%; 
+    height: auto; 
+    padding-left: 30px;
+  }
+  
+  .item-detail-info {
+    flex-grow: 1;
+    margin-left: 20px;
+    padding: 50px;
+
+    h2{
+        font-size: 1.5em;
+        margin-bottom: 5px;
+    }
+
+    h3{
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+
+    p{
+        margin-bottom: 10px;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+      }
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    background-color: #4285f4;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  
+    h2 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+  }
+  
+  // 폼 스타일
+  .review-form {
+    margin-top: 20px;
+  
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+  
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 30px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px; // 높이 조정
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+  
+    .button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      background-color: #4285f4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #3367d6;
+      }
+    }
+  }
+  
+  // 리뷰 목록 스타일
+  .review-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  
+    .review-item {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #fff;
+
+        .review-button{
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+            // max-width: 100%;
+            // max-height: auto;
+        }
+  
+      .review-info {
+        margin-bottom: 5px;
+
+        strong {
+            margin-right: 5px;
+        }
+      }
+  
+      .button {
+        margin-left: 10px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #c82333;
+        }
+      }
+    }
+  }
 
     // * 개별 페이지 설정 - 3. 장바구니 (list_shopping)
 
