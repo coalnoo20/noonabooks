@@ -153,9 +153,30 @@ body {
   height: 800px;
   border: solid 1px #373ea5;
 }
+.page_home .home_easy_search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
+}
+.page_home .home_easy_search .easy_input {
+  width: 500px;
+  height: 50px;
+  padding: 1em;
+  font-size: 18px;
+  margin-right: 0.6em;
+}
+.page_home .home_easy_search .search_btn {
+  border: none;
+  background: none;
+}
 .page_home .home_proto {
   margin-top: 120px;
   border-bottom: solid 1px #333;
+}
+.page_home .home_proto .main_recommend {
+  text-align: center;
+  margin: 2em 0;
 }
 .page_home .home_proto .slide_wrapper {
   position: relative;
@@ -246,4 +267,4 @@ body {
   padding: 30px;
   border: solid 1px #b8b8b8;
   border-radius: 10px;
-}
+}/*# sourceMappingURL=style.css.map */
