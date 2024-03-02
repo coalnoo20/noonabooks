@@ -397,36 +397,39 @@ const slideControlSetup = () => {
 
 // ! 구매 페이지 (상세 페이지쪽과 상의 필요)
 // 알라딘 API에서 받아올 상품 번호 임시 데이터
-const itemIsbn = 'K222938801';
 
-fetch(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ttbKey_JIHYEON}&itemIdType=ISBN&ItemId=${itemIsbn}&output=js&Version=20131101`)
-    .then((response) => response.json())
-    .then((data) => {
-        // 'item' 키가 있는지 확인
-        if (data.item && Array.isArray(data.item) && data.item.length > 0) {
-            const itemInfo = data.item[0];
-            const bookTitle = itemInfo.title;
-            const author = itemInfo.author;
-            const publisher = itemInfo.publisher;
-            const price = itemInfo.priceStandard;
-            const coverUrl = itemInfo.cover;
+const purchase = () => {
+    const itemIsbn = 'K222938801';
 
-            // HTML에 업데이트
-            document.getElementById('book-title').innerText = bookTitle;
-            document.getElementById('author').innerText = author;
-            document.getElementById('publisher').innerText = publisher;
-            document.getElementById('price').innerText = price;
-            document.getElementById('book-cover').src = coverUrl;
-        } else {
-            console.error('No item found in response:', data);
-        }
-    })
-    .catch((error) => console.error('Error:', error));
+    fetch(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ttbKey_JIHYEON}&itemIdType=ISBN&ItemId=${itemIsbn}&output=js&Version=20131101`)
+        .then((response) => response.json())
+        .then((data) => {
+            // 'item' 키가 있는지 확인
+            if (data.item && Array.isArray(data.item) && data.item.length > 0) {
+                const itemInfo = data.item[0];
+                const bookTitle = itemInfo.title;
+                const author = itemInfo.author;
+                const publisher = itemInfo.publisher;
+                const price = itemInfo.priceStandard;
+                const coverUrl = itemInfo.cover;
 
-document.getElementById('confirm-purchase').addEventListener('click', function () {
-    alert('바로 구매가 완료되었습니다!');
-    window.location = '../index.html';
-});
+                // HTML에 업데이트
+                document.getElementById('book-title').innerText = bookTitle;
+                document.getElementById('author').innerText = author;
+                document.getElementById('publisher').innerText = publisher;
+                document.getElementById('price').innerText = price;
+                document.getElementById('book-cover').src = coverUrl;
+            } else {
+                console.error('No item found in response:', data);
+            }
+        })
+        .catch((error) => console.error('Error:', error));
+
+    document.getElementById('confirm-purchase').addEventListener('click', function () {
+        alert('바로 구매가 완료되었습니다!');
+        window.location = '../index.html';
+    });
+};
 
 // * -------------
 // * 테스트 코드 영역
@@ -487,6 +490,7 @@ if (pathNow === '/index.html' || pathNow === '/') {
     console.log(pathNow);
 } else if (pathNow === '/html/purchase.html') {
     console.log(pathNow);
+    purchase();
 } else if (pathNow === '/html/info_shop.html') {
     console.log(pathNow);
 
