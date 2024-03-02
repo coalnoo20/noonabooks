@@ -104,6 +104,7 @@ let ItemLookUp_Version = '20131101';
 
 const ttbKey_ONDAL = `ttblusci2359001`; // ! TTB key - 원종
 const ttbKey_LUNA = `ttblhyasd2323001`; // ! TTB key - 혜영
+const ttbKey_JIHYEON = 'ttbrlawlgus09150054001'; // ! TTB key - 지현
 
 let urlTest = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_ONDAL}`);
 
@@ -393,6 +394,39 @@ const slideControlSetup = () => {
     prevBtn.addEventListener('click', () => moveSlide(currentIdx - 1));
     nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
 };
+
+// ! 구매 페이지 (상세 페이지쪽과 상의 필요)
+// 알라딘 API에서 받아올 상품 번호 임시 데이터
+const itemIsbn = 'K222938801';
+
+fetch(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ttbKey_JIHYEON}&itemIdType=ISBN&ItemId=${itemIsbn}&output=js&Version=20131101`)
+    .then((response) => response.json())
+    .then((data) => {
+        // 'item' 키가 있는지 확인
+        if (data.item && Array.isArray(data.item) && data.item.length > 0) {
+            const itemInfo = data.item[0];
+            const bookTitle = itemInfo.title;
+            const author = itemInfo.author;
+            const publisher = itemInfo.publisher;
+            const price = itemInfo.priceStandard;
+            const coverUrl = itemInfo.cover;
+
+            // HTML에 업데이트
+            document.getElementById('book-title').innerText = bookTitle;
+            document.getElementById('author').innerText = author;
+            document.getElementById('publisher').innerText = publisher;
+            document.getElementById('price').innerText = price;
+            document.getElementById('book-cover').src = coverUrl;
+        } else {
+            console.error('No item found in response:', data);
+        }
+    })
+    .catch((error) => console.error('Error:', error));
+
+document.getElementById('confirm-purchase').addEventListener('click', function () {
+    alert('바로 구매가 완료되었습니다!');
+    window.location = '../index.html';
+});
 
 // * -------------
 // * 테스트 코드 영역
