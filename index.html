@@ -9,26 +9,28 @@
 <body>
     <main class="page_home">
         <div class="home_title">
-            <h1>Home 화면</h1>
-            <nav>
+            <h1><a href="index.html">Noona Books</a></h1>
+            <div>
                 <br>
                 <!-- <p><a class="text_red" href="/html/api_test.html"> > API 테스트용 링크로 이동</a></p> -->
                 <!-- <p><a class="text_red" href="/html/style_guide.html"> > 페이지로 이동 - 스타일 가이드 (미적용)</a></p> -->
                 <!-- <p><a class="text_red" href="/html/blank.html"> > 페이지로 이동 - blank 템플릿</a></p> -->
                 <br>
-                <p><a class="text_seagreen" href="html/search_result.html"> > 페이지로 이동 - 상세 검색</a></p>
+                <!-- <p><a class="text_seagreen" href="html/search_result.html"> > 페이지로 이동 - 상세 검색</a></p> -->
                 <p><a class="text_seagreen" href="html/item_detail.html"> > 페이지로 이동 - 도서 상세 정보</a></p>
                 <br>
                 <!-- <p><a class="text_seagreen" href="/html/list_shopping.html"> > 페이지로 이동 - 장바구니</a></p> -->
                 <p><a class="text_seagreen" href="/html/purchase.html"> > 페이지로 이동 - 구매 진행</a></p>
                 <br>
-                <p><a class="text_seagreen" href="html/info_shop.html"> > 페이지로 이동 - 매장안내 </a></p>
+                <!-- <p><a class="text_seagreen" href="html/info_shop.html"> > 페이지로 이동 - 매장안내 </a></p> -->
                 <br>                
-            </nav>
+            </div>
         </div>
 
-<!-- todo: 하영님 - 추천 상품 API + 가로 스크롤을 이용한 Home 화면 구성 -->
         <article>
+
+            <!-- ? 하영님 추천도서 슬라이드 -->
+            <p id="main_anchor_1">추천도서</p>
             <div class="home_proto">
                 <div class="slide_wrapper">
                     <div class="slides" id="main_slide"></div>
@@ -38,7 +40,37 @@
                     <button class="next btn_blue">next</button>
                 </div>         
             </div>
+
+        <!-- ? 원종 에디터 초이스 -->
+
+            <div id="main_anchor_2" class="main_editor">
+                큐레이션
+            </div>
+            <div id="main_anchor_3" class="main_test">
+                <p>테스트를 위한 더미 영역입니다.</p>
+            </div>
+
+
         </article>
+
+        <!-- ? 원종 Footer 네비게이션 -->
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="#">Top</a></li>
+                    <li><a href="#main_anchor_1">추천도서</a></li>
+                    <li><a href="#main_anchor_2">큐레이션</a></li>
+                    <li><a href="#main_anchor_3">테스트 더미</a></li>
+                    <li><a href="#main_anchor_1">추천도서</a></li>
+                    <li><a href="#main_anchor_2">큐레이션</a></li>                    
+                    <i>|</i>
+                    <li><a href="html/search_result.html">상세검색</a></li>
+                    <li><a href="html/info_shop.html">매장안내</a></li>
+                </ul>
+            </nav>
+        </footer>
+
     </main>
     <script src="/script/main.js"></script>
 </body>
