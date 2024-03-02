@@ -178,9 +178,58 @@
 
         .home_title {
             padding: 10px;
+            border-bottom: solid 1px #333;
+
+            h1 {
+                @include font_NanumS(80px);
+                color: #333;
+            }
+        }
+
+        footer {
+            text-align: center;
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            nav {
+                display: flex;
+                justify-content: center;
+                width: 700px;
+                min-width: 350px;
+                height: 80px;
+                background-color: #cfcfcf7a;
+                border-radius: 20px;
+
+                ul {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+                    align-items: center;
+
+                    li {
+                        background-color: #bdbdbd;
+                        border-radius: 10px;
+                        padding: 10px 5px;
+                    }
+                }
+                
+            }
+        }
+
+        .main_editor, .main_test {
+            height: 800px;
+            border: solid 1px #373ea5;
         }
 
         .home_proto {
+            // ? 위치 조정 및 경계 확인용
+            margin-top: 120px;
+            border-bottom: solid 1px #333;
+
             // ? 하영님 작업 영역
             .slide_wrapper {
                 position: relative;
