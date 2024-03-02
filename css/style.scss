@@ -171,6 +171,18 @@
 // * 개별 페이지 설정 영역
 // ! 개별 페이지별 설정 - 메인 담당자 외 작업 추가되는 경우 반드시 ONDAL 및 담당자에 노티 해주세요.
 
+    // * 헤더 (메인/인포 사용)
+    header {
+        margin: 20px;
+        
+        h1 {
+            padding: 10px;
+            @include font_NanumS(80px);
+            color: #333;
+        }
+    }
+
+
     // * 개별 페이지 설정 - 0. 메인화면 (home = index.html) / 담당자 (원종, 하영)
 
     .page_home {
@@ -347,12 +359,13 @@
     // * 개별 페이지 설정 - 9. 매장안내 (info_shop) / 담당자 (지현)
     .map_container {
         font-family: "Noto Sans KR", sans-serif;
-        margin-bottom: 30px;
-      
+        margin: 0px auto 30px;
+        width: 50%;
+
         .map_title {
           font-family: "yg-jalnan";
           text-align: center;
-          margin-top: 50px;
+        //   margin-top: 50px;
           color: #5d5f66;
         }
       
@@ -377,8 +390,9 @@
         .location_info {
           display: flex;
           justify-content: center;
-          align-items: center;
-          margin: 30px auto;
+          align-items: start;
+          margin: 30px auto 0px;
+          gap:30px;
         }
       
         .info_item h2 {
@@ -387,7 +401,7 @@
         }
       
         .info_item {
-          padding: 20px;
+          padding: 30px;
         }
       
         .info_item p {
@@ -396,21 +410,25 @@
       
         .sub_info {
           display: flex;
-          align-items: center;
+          align-items: start;
           text-align: left;
-          justify-content: space-between;
+          justify-content: space-around;
           margin-top: 20px;
+          gap:60px;
+
+          .sub_item {
+            margin-left: 20px;
+            margin-right: 20px;
+            width:40%;
+            padding: 10px 30px;
+          }
+
         }
-      
-        .sub_info .sub_item {
-          margin-left: 20px;
-          margin-right: 20px;
+
+        .sub_item:nth-child(1) {
+            // margin-left: 50px;
         }
-        .add_position {
-          position: relative;
-          bottom: 117px;
-          padding-left: 20px;
-        }
+
         .sub_info h2 {
           font-size: 20px;
         }
