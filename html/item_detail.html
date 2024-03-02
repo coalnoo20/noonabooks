@@ -12,26 +12,39 @@
     <main class="page_item_detail">
         <h1>Aladin 상품 조회</h1>
         <button onclick="getItemDetails()">상품 상세 정보 조회</button>
-        <div id="results"></div>
+        <div  class="item-result-area" id="results">
+          
+          
+        
+        <hr>
+
+        </div>
 
         <hr>
 
-        <div id="app">
+        <div class="container">
+          <div class="header">
             <h2>리뷰</h2>
-            
-            <form id="review-form">
-              <label for="review-text">리뷰:</label>
-              <input type="text" id="review-text" required>
-        
-              <label for="review-rating">평점 (1-10):</label>
-              <input type="number" id="review-rating" min="1" max="10" required>
-        
-              <button type="button" onclick="submitReview()">제출</button>
-              <button type="button" onclick="cancelEdit()">취소</button>
-            </form>
-
-            <ul id="review-list"></ul>
           </div>
+        
+          <form class="review-form" id="review-form">
+            <label for="review-text">리뷰</label>
+            <textarea id="review-text" rows="4" required></textarea>
+        
+            <label for="review-rating">평점</label>
+            <select id="review-rating" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+        
+            <button type="button" onclick="submitReview()" class="button">작성</button>
+          </form>
+        
+          <ul class="review-list" id="review-list"></ul>
+        </div>
     </main>
     <script src="/script/main.js"></script>  
 </body>
