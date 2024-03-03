@@ -359,6 +359,7 @@ header h1 {
   flex-direction: column;
   justify-content: center;
   width: 1280px;
+  height: 800px;
 }
 .page_home .main_new .title {
   text-align: center;

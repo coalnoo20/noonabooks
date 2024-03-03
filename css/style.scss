@@ -186,7 +186,7 @@
     }
 
     .text_cancel {
-        text-decoration: line-through;
+        text-decoration: line-through;;
     }
 
 
@@ -465,6 +465,7 @@
             flex-direction: column;
             justify-content: center;
             width: 1280px;
+            height: 800px;
 
             .title{
                 text-align: center;
