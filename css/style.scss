@@ -454,6 +454,82 @@
                 margin: 1em;
             }
         }
+
+        .main_new {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 1280px;
+
+            .title{
+                text-align: center;
+                margin: 2em 0;
+            }
+
+            .new_books{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 5em;
+
+                .new_item{
+                    cursor: pointer;
+                    position: relative;
+                    width: 200px;
+                    height: 300px;
+                    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2);
+                    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                }
+                
+                .new_contents{
+                    position: absolute;
+                    width: 100%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgb(0, 0, 0, 0);
+                    transition: 0.4s;
+
+                    h2{
+                        text-align: center;
+                        display: none;
+                        color: white;
+                        margin-bottom: 1em;
+                        word-break: keep-all;
+                        font-size: 1.1em;
+                    }
+
+                    p{
+                        text-align: center;
+                        display: none;
+                        color: white;
+                        word-break: keep-all;
+                        font-size: 0.8em;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .new_item:hover {
+                background: #000000;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.34);
+
+                img{
+                    opacity: 0.2;
+                }
+                
+                .new_contents {
+                    h2, p{
+                        display: block;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
     };
 
 
