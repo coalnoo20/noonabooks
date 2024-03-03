@@ -126,6 +126,10 @@ body {
   font-style: italic;
 }
 
+.text_cancel {
+  text-decoration: line-through;
+}
+
 header {
   margin: 20px;
 }
@@ -431,6 +435,11 @@ header h1 {
   border: 1px solid #ddd;
   padding: 15px;
   margin-bottom: 20px;
+}
+.item-detail .detail_desc {
+  max-width: 700px;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .item-detail-img img {

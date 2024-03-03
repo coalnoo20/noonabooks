@@ -232,10 +232,11 @@ const createBookElement = (bookInfo) => {
         <div class="item-detail-info">
             <h2>${bookInfo.title}</h2>
             <h3>${bookInfo.author}</h3>
-            <p>${bookInfo.description.length > 150 ? bookInfo.description.slice(0, 150) : bookInfo.description}...</p>
+            <div class="detail_desc">${bookInfo.description.length > 500 ? bookInfo.description.slice(0, 500) : bookInfo.description}</div>
+            <br>
             <p>도서 출판날짜: ${bookInfo.pubDate}</p>
             <p>ISBN: ${bookInfo.isbn}</p>
-            <p>판매 가격: ${bookInfo.priceStandard.toLocaleString('en-US', {
+            <p class="text_red text_cancel">판매 가격: ${bookInfo.priceStandard.toLocaleString('en-US', {
                 currency: 'KRW',
             })}원</p>
             <p>할인 가격: ${bookInfo.priceSales.toLocaleString('en-US', {
@@ -243,7 +244,7 @@ const createBookElement = (bookInfo) => {
             })}원</p>
         </div>
         <div class="buy-button">
-        <a href="purchase.html" class="button">즉시구매</a>
+        <a href="purchase.html?" class="button btn_red">즉시구매</a>
         </div>
         </div>
         `;
