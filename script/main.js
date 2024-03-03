@@ -601,6 +601,15 @@ const purchase = () => {
     });
 };
 
+// * url의 isbn정보 Pharsing 용 함수
+
+const urlPharsing = () => {
+    const urlParams = new URL(location.href).searchParams;
+    const isbn13 = urlParams.get('isbn13');
+    console.log('is', isbn13);
+    return isbn13;
+};
+
 // * -------------
 // * 테스트 코드 영역
 // * -------------
@@ -657,9 +666,14 @@ if (pathNow === '/index.html' || pathNow === '/') {
     linkOutEditorSetup();
     loadSlideBooks();
 } else if (pathNow === '/html/item_detail.html') {
+    console.log('테스트url', urlPharsing());
     console.log('check-default-testISBN13', testISBN13);
-    testISBN13 = unpackTossData();
-    console.log('unpack-ISBN13', testISBN13);
+    if (urlPharsing()) {
+        testISBN13 = urlPharsing();
+    } else {
+        testISBN13 = unpackTossData();
+    }
+    console.log('after-ISBN13', testISBN13);
     getItemDetails(testISBN13);
     renderReviews(); // 리뷰 렌더링
 } else if (pathNow === '/html/search_result.html') {
