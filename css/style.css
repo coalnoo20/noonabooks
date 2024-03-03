@@ -472,6 +472,47 @@ header h1 {
   background-color: #c82333;
 }
 
+.page_purchase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Noto Sans KR", sans-serif;
+}
+.page_purchase .purchase-details {
+  top: 200px;
+}
+.page_purchase h3 {
+  text-align: center;
+  margin: 20px auto;
+}
+.page_purchase p {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.page_purchase .purchase_h1 {
+  text-align: center;
+}
+.page_purchase img {
+  float: left;
+  width: 120px;
+  margin-right: 20px;
+}
+.page_purchase #resultArea {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.page_purchase #confirm-purchase {
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  background-color: white;
+  font-family: "Noto Sans KR", sans-serif;
+  width: 100%;
+  margin: 20px auto;
+}
+
 .map_container {
   font-family: "Noto Sans KR", sans-serif;
   margin: 0px auto 30px;
@@ -565,4 +606,4 @@ header h1 {
   padding: 30px;
   border: solid 1px #b8b8b8;
   border-radius: 10px;
-}
+}/*# sourceMappingURL=style.css.map */

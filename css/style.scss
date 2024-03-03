@@ -605,8 +605,50 @@
 
     // * 개별 페이지 설정 - 3. 장바구니 (list_shopping)
 
-    // * 개별 페이지 설정 - 4. 구매 진행 (purchase)
+    // * 개별 페이지 설정 - 4. 구매 진행 (purchase) / 담당자 (지현)
+    .page_purchase {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: "Noto Sans KR", sans-serif;
+    
+    .purchase-details {
+        top: 200px;
+    }
 
+    h3 {
+        text-align: center;
+        margin: 20px auto;
+    }
+    p {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    .purchase_h1 {
+        text-align: center;
+    }
+    img{
+        float: left;
+        width: 120px;
+        margin-right: 20px;
+    }
+    #resultArea {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #confirm-purchase {
+        border : 2px solid black;
+        border-radius: 4px;
+        padding: 10px;
+        outline:none;
+        background-color: white;
+        font-family: "Noto Sans KR", sans-serif;
+        width: 100%;
+        margin: 20px auto;
+    }
+  
+}
     // * 개별 페이지 설정 - 8. 고객센터 / FAQ (customer_service)
 
     // * 개별 페이지 설정 - 9. 매장안내 (info_shop) / 담당자 (지현)
