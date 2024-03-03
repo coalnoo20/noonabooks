@@ -462,15 +462,20 @@
 
     // * 개별 페이지 설정 - 2. 제품 상세창 (item_detail)
 .page_item_detail {
-    max-width: 1200px;
+    max-width: 80%;
     margin: 0 auto;
     padding: 20px;
+    
+    h1{
+    font-family: "NanumDaSiSiJagHae";
+    font-size: 80px;
+    }
   }
   
   .item-detail {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     border: 1px solid #ddd; 
     padding: 15px;
     margin-bottom: 20px;
@@ -486,7 +491,7 @@
   .item-detail-info {
     flex-grow: 1;
     margin-left: 20px;
-    padding: 50px;
+    padding: 30px;
 
     h2{
         font-size: 1.5em;
@@ -585,8 +590,10 @@
             display: flex;
             align-items: center;
             margin-left: 30px;
-            // max-width: 100%;
-            // max-height: auto;
+
+            .button{
+                width: 65px;
+            }
         }
   
       .review-info {
@@ -616,8 +623,50 @@
 
     // * 개별 페이지 설정 - 3. 장바구니 (list_shopping)
 
-    // * 개별 페이지 설정 - 4. 구매 진행 (purchase)
+    // * 개별 페이지 설정 - 4. 구매 진행 (purchase) / 담당자 (지현)
+    .page_purchase {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: "Noto Sans KR", sans-serif;
+    
+    .purchase-details {
+        top: 200px;
+    }
 
+    h3 {
+        text-align: center;
+        margin: 20px auto;
+    }
+    p {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    .purchase_h1 {
+        text-align: center;
+    }
+    img{
+        float: left;
+        width: 120px;
+        margin-right: 20px;
+    }
+    #resultArea {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #confirm-purchase {
+        border : 2px solid black;
+        border-radius: 4px;
+        padding: 10px;
+        outline:none;
+        background-color: white;
+        font-family: "Noto Sans KR", sans-serif;
+        width: 100%;
+        margin: 20px auto;
+    }
+  
+}
     // * 개별 페이지 설정 - 8. 고객센터 / FAQ (customer_service)
 
     // * 개별 페이지 설정 - 9. 매장안내 (info_shop) / 담당자 (지현)
