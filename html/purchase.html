@@ -19,16 +19,19 @@
       </header>
     <main class="page_purchase">
         <div>
-        <h2 class="purchase_title">결제 정보</h2>
+        <h2 class="purchase_title">주문 상품 정보</h2>
         </div>
         <div class="purchase-details">
-            <h3>상품 확인</h3>
-            <img id="book-cover" alt="책 표지 이미지">
-            <p>책 제목: <span id="book-title"></span></p>
-            <p>저자: <span id="author"></span></p>
-            <p>출판사: <span id="publisher"></span></p>
-            <p>가격: <span id="price"></span></p>
-            <button id="confirm-purchase">구매하기</button>
+            <div class="book-detail">
+                <img id="book-cover" alt="책 표지 이미지">
+                <div class="book-contents">
+                    <p><span class="title" id="book-title"></span></p>
+                    <p>저자: <span class="author" id="author"></span></p>
+                    <p>출판사: <span class="publisher" id="publisher"></span></p>
+                    <p>가격: <span class="price" id="price"></span></p>
+                </div>
+            </div>
+            <button class="purchase-btn" id="confirm-purchase">구매하기</button>
         </div>
         <div id="resultArea"></div>
     </main>
