@@ -332,27 +332,6 @@ const easySearchBooks = async () => {
     location.href = data.link; // todo : 링크는 추후 상세 검색 리스트 페이지로 수정할 예정
 };
 
-const testItemDetails = async (isbn13) => {
-    let urlDetail = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
-    console.log('get item details');
-
-    let ItemLookUp_ItemId = isbn13;
-
-    urlDetail.searchParams.set('ItemIdType', ItemLookUp_ItemIdType);
-    urlDetail.searchParams.set('ItemId', ItemLookUp_ItemId);
-    urlDetail.searchParams.set('Output', ItemSearch_output);
-    urlDetail.searchParams.set('Version', ItemLookUp_Version);
-
-    try {
-        const response = await fetch(urlDetail);
-        const data = await response.json();
-        console.log(data.item);
-        //displayResults(data.item[0]);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
-
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
     const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
