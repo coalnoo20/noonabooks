@@ -228,6 +228,7 @@ const createBookElement = (bookInfo) => {
         <div class="item-detail-img">
             <img src="${bookInfo.cover}" alt="cover">
         </div>
+        <div class="item-detail-align">
         <div class="item-detail-info">
             <h2>${bookInfo.title}</h2>
             <h3>${bookInfo.author}</h3>
@@ -240,7 +241,12 @@ const createBookElement = (bookInfo) => {
             <p>할인 가격: ${bookInfo.priceSales.toLocaleString('en-US', {
                 currency: 'KRW',
             })}원</p>
-        </div>`;
+        </div>
+        <div class="buy-button">
+        <a href="purchase.html" class="button">즉시구매</a>
+        </div>
+        </div>
+        `;
 
     return bookElement;
 };
