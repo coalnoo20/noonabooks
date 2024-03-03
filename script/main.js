@@ -411,8 +411,9 @@ const loadSlideBooks = async () => {
     // todo : 링크는 추후 상세페이지 링크로 수정할 예정(현재 알라딘 링크로 연결됨)
     const slideHTML = bookList
         .map((book) => {
+            // console.log(book.isbn13);
             return `<div class="slide_item">
-            <a href="${book.link}">
+            <a href="html/item_detail.html?isbn13=${book.isbn13}">
         <div class="slide_contents">
             <h2>${book.title}</h2>
             <p>${book.author}</p>
