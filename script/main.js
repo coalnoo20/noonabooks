@@ -592,13 +592,55 @@ const purchase = () => {
         // 랜덤 주문번호 생성
         const orderNumber = Math.floor(Math.random() * 1000000);
         alert('구매가 완료되었습니다!');
+        // 구매한 책의 정보 가져오기
+        const bookTitle = document.getElementById('book-title').innerText;
+        const author = document.getElementById('author').innerText;
+        const publisher = document.getElementById('publisher').innerText;
+        const price = document.getElementById('price').innerText;
+        const coverUrl = document.getElementById('book-cover').src;
+
+        // 주문번호와 책의 정보를 localStorage에 저장
+        const order = {
+            orderNumber: orderNumber,
+            bookTitle: bookTitle,
+            author: author,
+            publisher: publisher,
+            price: price,
+            coverUrl: coverUrl,
+            isbn: itemIsbn,
+        };
+        localStorage.setItem('order', JSON.stringify(order));
         // 주문 완료
         document.getElementById('resultArea').innerHTML = `
                 <p style="color:green;">고객님의 주문이 성공적으로 완료되었습니다.</p>
-                <p><strong>주문 번호: ${orderNumber}</strong></p>
+                <p><strong>주문 번호: ${orderNumber}</strong> | 
+                <a href="order.html" style="color:skyblue;">주문 확인 페이지 이동</a></p>
             `;
     });
 };
+
+// ! 구매 확인 페이지 ( 로컬 스토리지에 주문번호와 아이템 정보가 담기는 것까진 확인 완료 )
+function checkOrder() {
+    const orderNumber = document.getElementById('orderNumberInput').value;
+    const storedOrderNumber = localStorage.getItem('orderNumber');
+    if (orderNumber === storedOrderNumber) {
+        const storedOrder = JSON.parse(localStorage.getItem('order'));
+        if (storedOrder) {
+            document.getElementById('orderDetails').innerHTML = `
+                <p>주문 번호: <strong>${storedOrder.orderNumber}</strong></p>
+                <p>책 제목: ${storedOrder.bookTitle}</p>
+                <p>저자: ${storedOrder.author}</p>
+                <p>출판사: ${storedOrder.publisher}</p>
+                <p>가격: ${storedOrder.price}</p>
+                <img src="${storedOrder.coverUrl}" alt="구매한 책 표지 이미지">
+            `;
+        } else {
+            document.getElementById('orderDetails').innerHTML = '<p style="color:red;">주문 정보를 찾을 수 없습니다.</p>';
+        }
+    } else {
+        document.getElementById('orderDetails').innerHTML = '<p style="color:red;">일치하는 주문이 없습니다.</p>';
+    }
+}
 
 // * -------------
 // * 테스트 코드 영역

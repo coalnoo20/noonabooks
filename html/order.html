@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구매 확인</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://kit.fontawesome.com/de18e820f6.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <main class="page_confirmation">
+        <header>
+            <h1 class="purchase_h1"><a href="/index.html">Noona Books</a></h1>
+        </header>        
+        <div>
+            <h2 class="confirmation_title">구매 확인</h2>
+        </div>
+        <div class="confirmation-details">
+            <label for="orderNumberInput">주문 번호 입력:</label>
+            <input type="text" id="orderNumberInput">
+            <button onclick="checkOrder()">주문 확인</button>
+        </div>
+        <div id="orderDetails"></div>
+    </main>
+    <script src="/script/main.js"></script>  
+</body>
+</html>
