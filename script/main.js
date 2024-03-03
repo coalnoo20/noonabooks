@@ -199,6 +199,7 @@ const getItemDetails = async (isbn13 = ItemLookUp_ItemId) => {
     urlDetail.searchParams.set('ItemId', ItemLookUp_ItemId);
     urlDetail.searchParams.set('Output', ItemSearch_output);
     urlDetail.searchParams.set('Version', ItemLookUp_Version);
+    urlDetail.searchParams.set('Cover', 'Big');
 
     try {
         const response = await fetch(urlDetail);
@@ -694,7 +695,7 @@ const getListByKeyword = () => {
 
 if (pathNow === '/index.html' || pathNow === '/') {
     slideControlSetup();
-    linkOutDirectSetup();
+    // linkOutDirectSetup();
     linkOutEditorSetup();
     loadSlideBooks();
     loadNewBooks();

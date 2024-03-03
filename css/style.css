@@ -600,7 +600,6 @@ header h1 {
 }
 .map_container .map_title {
   text-align: center;
-  margin-top: 50px;
   color: #5d5f66;
 }
 .map_container .name_color {
@@ -624,6 +623,7 @@ header h1 {
   justify-content: center;
   align-items: center;
   margin: 30px auto;
+  gap: 100px;
 }
 .map_container .info_item h2 {
   font-size: 20px;
@@ -639,8 +639,9 @@ header h1 {
   display: flex;
   align-items: center;
   text-align: left;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
+  gap: 300px;
 }
 .map_container .sub_info .sub_item {
   margin-left: 20px;
@@ -687,4 +688,4 @@ header h1 {
   padding: 30px;
   border: solid 1px #b8b8b8;
   border-radius: 10px;
-}/*# sourceMappingURL=style.css.map */
+}
