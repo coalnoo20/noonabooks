@@ -372,6 +372,7 @@ header h1 {
   height: 300px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-bottom: 4em;
 }
 .page_home .main_new .new_books .new_contents {
   position: absolute;
