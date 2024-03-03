@@ -597,7 +597,7 @@ const loadNewBooks = async () => {
 const purchase = () => {
     const itemIsbn = 'K222938801';
 
-    fetch(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ttbKey_JIHYEON}&itemIdType=ISBN&ItemId=${itemIsbn}&output=js&Version=20131101`)
+    fetch(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ttbKey_JIHYEON}&itemIdType=ISBN&ItemId=${itemIsbn}&output=js&Version=20131101&cover=Big`)
         .then((response) => response.json())
         .then((data) => {
             // 'item' 키가 있는지 확인

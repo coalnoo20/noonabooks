@@ -555,44 +555,61 @@ header h1 {
 }
 
 .page_purchase {
+  width: 1280px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   font-family: "Noto Sans KR", sans-serif;
 }
+.page_purchase .purchase_title {
+  margin-bottom: 30px;
+}
 .page_purchase .purchase-details {
   top: 200px;
 }
-.page_purchase h3 {
-  text-align: center;
+.page_purchase .purchase-details .book-detail {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+.page_purchase .purchase-details .book-detail .book-contents .title {
+  font-weight: bold;
+  font-size: 1.8em;
+  word-break: keep-all;
+}
+.page_purchase .purchase-details .book-detail .book-contents .price {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: red;
+}
+.page_purchase .purchase-details .purchase-btn {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #373ea5;
+  font-family: "Noto Sans KR", sans-serif;
+  width: 100%;
+  padding: 16px 0;
   margin: 20px auto;
 }
 .page_purchase p {
   margin-top: 20px;
   margin-left: 20px;
 }
-.page_purchase .purchase_h1 {
-  text-align: center;
-}
 .page_purchase img {
   float: left;
-  width: 120px;
+  width: 200px;
   margin-right: 20px;
 }
 .page_purchase #resultArea {
   text-align: center;
   margin-bottom: 20px;
-}
-.page_purchase #confirm-purchase {
-  border: 2px solid black;
-  border-radius: 4px;
-  padding: 10px;
-  outline: none;
-  background-color: white;
-  font-family: "Noto Sans KR", sans-serif;
-  width: 100%;
-  margin: 20px auto;
 }
 
 .map_container {
