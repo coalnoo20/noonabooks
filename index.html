@@ -33,7 +33,7 @@
         <article>
             <!-- ? 하영 빠른 검색 -->
 
-            <div class="home_easy_search">
+            <div id="main_anchor_1" class="home_easy_search">
                 <div class="search_bar">
                     <input type="text" class="easy_input" id="easy_keyword" placeholder="검색어를 입력해주세요.">
                     <button class="search_btn" id="easy_search_btn" onclick="easySearchBooks()">
@@ -43,7 +43,7 @@
             </div>
 
             <!-- ? 하영님 추천도서 슬라이드 -->
-            <div id="main_anchor_1" class="main_recommend">
+            <div class="main_recommend">
                 <h1 class="title">추천도서</h1>
                 <div class="slide_wrapper">
                     <div class="slides" id="main_slide"></div>
@@ -94,13 +94,13 @@
             <nav>
                 <ul>
                     <a href="#"><li><i class="fa-solid fa-house"></i></li></a>
-                    <i>|</i>
+                    <i><h3>|</h3></i>
                     <li><a href="#main_anchor_1"><i class="fa-regular fa-heart"></i> 추천도서</a></li>
                     <li><a href="#main_anchor_2"><i class="fa-solid fa-book-open-reader"></i> 큐레이션</a></li>
                     <li><a href="#main_anchor_3"><i class="fa-solid fa-truck-fast"></i> 신간알림</a></li>
                     <!-- <li><a href="#main_anchor_1">추천도서</a></li> -->
                     <!-- <li><a href="#main_anchor_2">큐레이션</a></li>                     -->
-                    <i>|</i>
+                    <i><h3>|</h3></i>
                     <li><a href="html/search_result.html"><i class="fa-solid fa-magnifying-glass"></i> 상세검색</a></li>
                     <li><a href="html/info_shop.html"><i class="fa-solid fa-car"></i> 오시는 길</a></li>
                 </ul>

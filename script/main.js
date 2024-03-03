@@ -508,7 +508,7 @@ const linkOutEditorSetup = () => {
         // console.log(testStorageRequest.ISBN13);
         // storageTossData(); // ! 정보없이 새로운 페이지를 호출하기만 하는 경우
         storageTossData(9791197956850);
-        linkOut();
+        linkOut('/html/item_detail.html?isbn13=9791197956850');
         // linkOut('/html/item_detail.html'); // ! 상세 페이지가 많이 쓰이므로 기본 매개변수로 설정함
         // linkOut('/html/purchase.html'); // ! 구매페이지 연결시 테스트용
         // window.location.href = 'html/item_detail.html'; //! 직접 보내는 대신 linkOut 함수 이용
@@ -713,6 +713,14 @@ if (pathNow === '/index.html' || pathNow === '/') {
     console.log(pathNow);
 } else if (pathNow === '/html/purchase.html') {
     console.log(pathNow);
+    console.log('테스트url', urlPharsing());
+    console.log('check-default-testISBN13', testISBN13);
+    if (urlPharsing()) {
+        testISBN13 = urlPharsing();
+    } else {
+        testISBN13 = unpackTossData();
+    }
+    console.log('after-ISBN13', testISBN13);
     purchase();
 } else if (pathNow === '/html/info_shop.html') {
     console.log(pathNow);
