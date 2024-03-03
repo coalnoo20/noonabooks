@@ -100,6 +100,17 @@ let ItemLookUp_Version = '20131101';
 // includeKey
 // offCode
 
+// ? 알라딘 ItemOffStoreList 주소
+// ? 중고상품 보유 매장 검색 API
+const urlAPI_ItemOffStoreList = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemOffStoreList.aspx';
+
+// ? 쿼리 영역 - ItemLookUp
+let ItemOffStoreList_ItemType = 'ISBN13';
+
+let ItemOffStoreList_ItemId = 9788958285342;
+
+let ItemOffStoreList_Output = 'js';
+
 // ? ttbKey
 
 const ttbKey_ONDAL = `ttblusci2359001`; // ! TTB key - 원종
@@ -192,11 +203,12 @@ const getItemDetails = async (isbn13 = ItemLookUp_ItemId) => {
     try {
         const response = await fetch(urlDetail);
         const data = await response.json();
-        // console.log(data.item[0]);
         displayResults(data.item[0]);
     } catch (error) {
         console.error('Error:', error);
     }
+
+    getItemOffStoreList();
 };
 
 const displayResults = (results) => {
@@ -230,6 +242,40 @@ const createBookElement = (bookInfo) => {
         </div>`;
 
     return bookElement;
+};
+
+// ! 알라딘 ItemOffStoreList 가져오기
+const getItemOffStoreList = async (isbn13 = ItemOffStoreList_ItemId) => {
+    let urlOffStoreList = new URL(`https://${urlAPI_ItemOffStoreList}?ttbkey=${ttbKey_LUNA}`);
+    console.log('get item off store list');
+
+    let ItemOffStoreList_ItemId = isbn13;
+
+    urlOffStoreList.searchParams.set('ItemIdType', ItemOffStoreList_ItemType);
+    urlOffStoreList.searchParams.set('ItemId', ItemOffStoreList_ItemId);
+    urlOffStoreList.searchParams.set('Output', ItemOffStoreList_Output);
+
+    try {
+        const response = await fetch(urlOffStoreList);
+        const data = await response.json();
+        renderStoreList(data.itemOffStoreList);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+const renderStoreList = (storeList) => {
+    console.log(storeList);
+    // const storeListHtml = storeList
+    //     .map(
+    //         (store) => `
+    //         <p>${store.offName}</p>
+    //         <button><a href="${store.link}" target="_blank">바로가기</a></button>
+    //     `
+    //     )
+    //     .join('');
+
+    // document.getElementById('offstore-list').innerHTML = storeListHtml;
 };
 
 // ! 리뷰 작성 CRUD

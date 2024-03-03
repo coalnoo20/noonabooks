@@ -12,12 +12,16 @@
     <h1><a href="/index.html">Noona Books</a></h1>
   </header>
     <main class="page_item_detail">
-        <h1>Aladin 상품 조회</h1>
-        <button onclick="getItemDetails()">상품 상세 정보 조회</button>
+        <h1>Noona Books 상품 조회</h1>
+        <!-- <button onclick="getItemDetails()">상품 상세 정보 조회</button> -->
         <div  class="item-result-area" id="results">
-          
-          
-        
+        <hr>
+        <div class="offstore-container">
+          <div id="offstore-list">
+            <!-- 여기에 중모 매장 리스트 내용이 들어갑니다 -->
+          </div>
+        </div>
+
         <hr>
 
         </div>
@@ -31,10 +35,11 @@
         
           <form class="review-form" id="review-form">
             <label for="review-text">리뷰</label>
-            <textarea id="review-text" rows="4" required></textarea>
+            <textarea id="review-text" rows="4" placeholder="리뷰를 작성해 주세요." required></textarea>
         
             <label for="review-rating">평점</label>
             <select id="review-rating" required>
+              <option value="" disabled selected>- 평점을 선택해 주세요.💫</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
