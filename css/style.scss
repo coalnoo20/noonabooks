@@ -647,13 +647,11 @@
     // * 개별 페이지 설정 - 9. 매장안내 (info_shop) / 담당자 (지현)
     .map_container {
         font-family: "Noto Sans KR", sans-serif;
-        margin: 0px auto 30px;
-        width: 50%;
-
+        margin-bottom: 30px;
+      
         .map_title {
-          font-family: "yg-jalnan";
           text-align: center;
-        //   margin-top: 50px;
+          margin-top: 50px;
           color: #5d5f66;
         }
       
@@ -678,9 +676,8 @@
         .location_info {
           display: flex;
           justify-content: center;
-          align-items: start;
-          margin: 30px auto 0px;
-          gap:30px;
+          align-items: center;
+          margin: 30px auto;
         }
       
         .info_item h2 {
@@ -689,7 +686,7 @@
         }
       
         .info_item {
-          padding: 30px;
+          padding: 20px;
         }
       
         .info_item p {
@@ -698,25 +695,21 @@
       
         .sub_info {
           display: flex;
-          align-items: start;
+          align-items: center;
           text-align: left;
-          justify-content: space-around;
+          justify-content: space-between;
           margin-top: 20px;
-          gap:60px;
-
-          .sub_item {
-            margin-left: 20px;
-            margin-right: 20px;
-            width:40%;
-            padding: 10px 30px;
-          }
-
         }
-
-        .sub_item:nth-child(1) {
-            // margin-left: 50px;
+      
+        .sub_info .sub_item {
+          margin-left: 20px;
+          margin-right: 20px;
         }
-
+        .add_position {
+          position: relative;
+          bottom: 118px;
+          padding-left: 20px;
+        }
         .sub_info h2 {
           font-size: 20px;
         }
