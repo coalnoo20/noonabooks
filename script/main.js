@@ -199,6 +199,7 @@ const getItemDetails = async (isbn13 = ItemLookUp_ItemId) => {
     urlDetail.searchParams.set('ItemId', ItemLookUp_ItemId);
     urlDetail.searchParams.set('Output', ItemSearch_output);
     urlDetail.searchParams.set('Version', ItemLookUp_Version);
+    urlDetail.searchParams.set('Cover', 'Big');
 
     try {
         const response = await fetch(urlDetail);
@@ -514,7 +515,7 @@ const linkOutEditorSetup = () => {
         // console.log(testStorageRequest.ISBN13);
         // storageTossData(); // ! 정보없이 새로운 페이지를 호출하기만 하는 경우
         storageTossData(9791197956850);
-        linkOut();
+        linkOut('/html/item_detail.html?isbn13=9791197956850');
         // linkOut('/html/item_detail.html'); // ! 상세 페이지가 많이 쓰이므로 기본 매개변수로 설정함
         // linkOut('/html/purchase.html'); // ! 구매페이지 연결시 테스트용
         // window.location.href = 'html/item_detail.html'; //! 직접 보내는 대신 linkOut 함수 이용
@@ -565,6 +566,38 @@ const unpackTossData = () => {
     return tempTestObj.ISBN13;
 };
 
+const loadNewBooks = async () => {
+    const urlNewBook = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
+    urlNewBook.searchParams.set('QueryType', 'ItemNewSpecial');
+    urlNewBook.searchParams.set('CategoryId', 55889); //소설
+    urlNewBook.searchParams.set('MaxResults', 5);
+    urlNewBook.searchParams.set('SearchTarget', 'Book');
+    urlNewBook.searchParams.set('output', 'js');
+    urlNewBook.searchParams.set('Version', 20131101);
+    urlNewBook.searchParams.set('Cover', 'Big');
+
+    const response = await fetch(urlNewBook);
+    data = await response.json();
+    bookList = data.item;
+
+    const slideHTML = bookList
+        .map((book) => {
+            return `<div class="new_item">
+            <a href="html/item_detail.html?isbn13=${book.isbn13}">
+        <div class="new_contents">
+            <h2>${book.title}</h2>
+            <p>${book.author}</p>
+        </div>
+        <img
+          src="${book.cover}"
+        /></a>
+      </div>`;
+        })
+        .join('');
+
+    document.getElementById('new_area').innerHTML = slideHTML;
+};
+
 // ! 구매 페이지 (상세 페이지쪽과 상의 필요)
 // 알라딘 API에서 받아올 상품 번호 임시 데이터
 
@@ -605,6 +638,15 @@ const purchase = () => {
                 <p><strong>주문 번호: ${orderNumber}</strong></p>
             `;
     });
+};
+
+// * url의 isbn정보 Pharsing 용 함수
+
+const urlPharsing = () => {
+    const urlParams = new URL(location.href).searchParams;
+    const isbn13 = urlParams.get('isbn13');
+    console.log('is', isbn13);
+    return isbn13;
 };
 
 // * -------------
@@ -659,19 +701,33 @@ const getListByKeyword = () => {
 
 if (pathNow === '/index.html' || pathNow === '/') {
     slideControlSetup();
-    linkOutDirectSetup();
+    // linkOutDirectSetup();
     linkOutEditorSetup();
     loadSlideBooks();
+    loadNewBooks();
 } else if (pathNow === '/html/item_detail.html') {
+    console.log('테스트url', urlPharsing());
     console.log('check-default-testISBN13', testISBN13);
-    testISBN13 = unpackTossData();
-    console.log('unpack-ISBN13', testISBN13);
+    if (urlPharsing()) {
+        testISBN13 = urlPharsing();
+    } else {
+        testISBN13 = unpackTossData();
+    }
+    console.log('after-ISBN13', testISBN13);
     getItemDetails(testISBN13);
     renderReviews(); // 리뷰 렌더링
 } else if (pathNow === '/html/search_result.html') {
     console.log(pathNow);
 } else if (pathNow === '/html/purchase.html') {
     console.log(pathNow);
+    console.log('테스트url', urlPharsing());
+    console.log('check-default-testISBN13', testISBN13);
+    if (urlPharsing()) {
+        testISBN13 = urlPharsing();
+    } else {
+        testISBN13 = unpackTossData();
+    }
+    console.log('after-ISBN13', testISBN13);
     purchase();
 } else if (pathNow === '/html/info_shop.html') {
     console.log(pathNow);
