@@ -134,8 +134,8 @@ let testISBN13 = 999;
 
 let testStorageRequest = {
     type: 'ISBN13',
-    ISBN13: 888,
-    ID: 777,
+    ISBN13: 9788915107243,
+    ID: 228971437,
 };
 
 // ! html control (object)
@@ -191,7 +191,7 @@ const getItemDetails = async (isbn13 = ItemLookUp_ItemId) => {
     let urlDetail = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
     console.log('get item details');
 
-    // console.log("getItemDetails - isbn13",isbn13);
+    console.log('getItemDetails - isbn13', isbn13);
 
     let ItemLookUp_ItemId = isbn13;
 
@@ -523,29 +523,29 @@ const linkOut = (href = '/html/item_detail.html') => {
 
 // ? localStorage에 ISBN이나 ID값을 저장하는 함수
 
-const storageTossData = (tossData = '', tossType = 'ISBN13') => {
-    console.log('tossdata in storageTossData', '');
-    if (tossData == '') {
-        console.log('저장할 tossData가 없습니다. 기존 저장된 내용을 초기화 합니다.');
-        // testStorageRequest.type = '';
-        testStorageRequest.ISBN13 = tossData;
-        testStorageRequest.ID = tossData;
-        console.log(testStorageRequest);
-    } else {
+const storageTossData = (tossData, tossType = 'ISBN13') => {
+    console.log('tossdata in storageTossData', tossData);
+    if (tossData) {
         testStorageRequest.type = tossType;
-        if ((tossType = 'ISBN13')) {
-            testStorageRequest.ISBN13 = tossData;
-        } else if ((tossType = 'ID')) {
-            testStorageRequest.ID = tossData;
-        } else {
-            console.log('타입에러');
-            return;
-        }
-        // console.log('sss', testStorageRequest);
-        const testObjString = JSON.stringify(testStorageRequest);
-        window.localStorage.setItem('testData', testObjString);
-        // console.log('testData 로컬저장 완료');
+    } else {
+        console.log('저장할 tossData가 없습니다. 기존 저장된 내용을 초기화 합니다. - 무소유');
+        testStorageRequest.type = tossType;
+        testStorageRequest.ISBN13 = 9788993335231;
+        testStorageRequest.ID = 6740786;
+        console.log(testStorageRequest);
     }
+
+    if ((tossType = 'ISBN13')) {
+        testStorageRequest.ISBN13 = tossData;
+    } else if ((tossType = 'ID')) {
+        testStorageRequest.ID = tossData;
+    } else {
+        console.log('타입에러');
+    }
+    // console.log('sss', testStorageRequest);
+    const testObjString = JSON.stringify(testStorageRequest);
+    window.localStorage.setItem('testData', testObjString);
+    // console.log('testData 로컬저장 완료');
 };
 
 // ? localStorage에 저장된 tossData를 불러와서 반환하는 함수
