@@ -559,6 +559,38 @@ const unpackTossData = () => {
     return tempTestObj.ISBN13;
 };
 
+const loadNewBooks = async () => {
+    const urlNewBook = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
+    urlNewBook.searchParams.set('QueryType', 'ItemNewSpecial');
+    urlNewBook.searchParams.set('CategoryId', 55889); //소설
+    urlNewBook.searchParams.set('MaxResults', 5);
+    urlNewBook.searchParams.set('SearchTarget', 'Book');
+    urlNewBook.searchParams.set('output', 'js');
+    urlNewBook.searchParams.set('Version', 20131101);
+    urlNewBook.searchParams.set('Cover', 'Big');
+
+    const response = await fetch(urlNewBook);
+    data = await response.json();
+    bookList = data.item;
+
+    const slideHTML = bookList
+        .map((book) => {
+            return `<div class="new_item">
+            <a href="html/item_detail.html?isbn13=${book.isbn13}">
+        <div class="new_contents">
+            <h2>${book.title}</h2>
+            <p>${book.author}</p>
+        </div>
+        <img
+          src="${book.cover}"
+        /></a>
+      </div>`;
+        })
+        .join('');
+
+    document.getElementById('new_area').innerHTML = slideHTML;
+};
+
 // ! 구매 페이지 (상세 페이지쪽과 상의 필요)
 // 알라딘 API에서 받아올 상품 번호 임시 데이터
 
@@ -665,6 +697,7 @@ if (pathNow === '/index.html' || pathNow === '/') {
     linkOutDirectSetup();
     linkOutEditorSetup();
     loadSlideBooks();
+    loadNewBooks();
 } else if (pathNow === '/html/item_detail.html') {
     console.log('테스트url', urlPharsing());
     console.log('check-default-testISBN13', testISBN13);
