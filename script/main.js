@@ -527,6 +527,14 @@ const storageTossData = (tossData, tossType = 'ISBN13') => {
     console.log('tossdata in storageTossData', tossData);
     if (tossData) {
         testStorageRequest.type = tossType;
+        if ((tossType = 'ISBN13')) {
+            testStorageRequest.ISBN13 = tossData;
+        } else if ((tossType = 'ID')) {
+            testStorageRequest.ID = tossData;
+        } else {
+            console.log('타입에러');
+            testStorageRequest.ISBN13 = 9788993335231;
+        }
     } else {
         console.log('저장할 tossData가 없습니다. 기존 저장된 내용을 초기화 합니다. - 무소유');
         testStorageRequest.type = tossType;
@@ -535,13 +543,6 @@ const storageTossData = (tossData, tossType = 'ISBN13') => {
         console.log(testStorageRequest);
     }
 
-    if ((tossType = 'ISBN13')) {
-        testStorageRequest.ISBN13 = tossData;
-    } else if ((tossType = 'ID')) {
-        testStorageRequest.ID = tossData;
-    } else {
-        console.log('타입에러');
-    }
     // console.log('sss', testStorageRequest);
     const testObjString = JSON.stringify(testStorageRequest);
     window.localStorage.setItem('testData', testObjString);
