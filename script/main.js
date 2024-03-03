@@ -100,6 +100,17 @@ let ItemLookUp_Version = '20131101';
 // includeKey
 // offCode
 
+// ? 알라딘 ItemOffStoreList 주소
+// ? 중고상품 보유 매장 검색 API
+const urlAPI_ItemOffStoreList = urlProxy + 'http://www.aladin.co.kr/ttb/api/ItemOffStoreList.aspx';
+
+// ? 쿼리 영역 - ItemLookUp
+let ItemOffStoreList_ItemType = 'ISBN13';
+
+let ItemOffStoreList_ItemId = 9788958285342;
+
+let ItemOffStoreList_Output = 'js';
+
 // ? ttbKey
 
 const ttbKey_ONDAL = `ttblusci2359001`; // ! TTB key - 원종
@@ -119,9 +130,17 @@ let callback = [];
 
 let data = '';
 
+let testISBN13 = 999;
+
+let testStorageRequest = {
+    type: 'ISBN13',
+    ISBN13: 888,
+    ID: 777,
+};
+
 // ! html control (object)
 
-// * HOME 슬라이드 관련 변수
+// ? HOME 슬라이드 관련 변수
 let slides = document.querySelector('.slides');
 
 let slideItem = document.querySelectorAll('.slides .slide_item');
@@ -136,7 +155,12 @@ let prevBtn = document.querySelector('.prev');
 
 let nextBtn = document.querySelector('.next');
 
-const pathNow = window.location.pathname; // ! 현재 윈도우의 경로 체크용
+// ? 현재 윈도우의 경로 체크용
+const pathNow = window.location.pathname;
+
+// ? 에디터 추천 페이지의 이미지 링크 버튼
+const linkOutEditor = document.getElementById('linkOutEditor');
+const btnItemDetail = document.getElementById('btnItemDetail');
 
 // * -------------
 // * 함수 영역 -일반
@@ -167,6 +191,8 @@ const getItemDetails = async (isbn13 = ItemLookUp_ItemId) => {
     let urlDetail = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
     console.log('get item details');
 
+    // console.log("getItemDetails - isbn13",isbn13);
+
     let ItemLookUp_ItemId = isbn13;
 
     urlDetail.searchParams.set('ItemIdType', ItemLookUp_ItemIdType);
@@ -177,11 +203,12 @@ const getItemDetails = async (isbn13 = ItemLookUp_ItemId) => {
     try {
         const response = await fetch(urlDetail);
         const data = await response.json();
-        // console.log(data.item[0]);
         displayResults(data.item[0]);
     } catch (error) {
         console.error('Error:', error);
     }
+
+    getItemOffStoreList();
 };
 
 const displayResults = (results) => {
@@ -215,6 +242,40 @@ const createBookElement = (bookInfo) => {
         </div>`;
 
     return bookElement;
+};
+
+// ! 알라딘 ItemOffStoreList 가져오기
+const getItemOffStoreList = async (isbn13 = ItemOffStoreList_ItemId) => {
+    let urlOffStoreList = new URL(`https://${urlAPI_ItemOffStoreList}?ttbkey=${ttbKey_LUNA}`);
+    console.log('get item off store list');
+
+    let ItemOffStoreList_ItemId = isbn13;
+
+    urlOffStoreList.searchParams.set('ItemIdType', ItemOffStoreList_ItemType);
+    urlOffStoreList.searchParams.set('ItemId', ItemOffStoreList_ItemId);
+    urlOffStoreList.searchParams.set('Output', ItemOffStoreList_Output);
+
+    try {
+        const response = await fetch(urlOffStoreList);
+        const data = await response.json();
+        renderStoreList(data.itemOffStoreList);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+const renderStoreList = (storeList) => {
+    console.log(storeList);
+    // const storeListHtml = storeList
+    //     .map(
+    //         (store) => `
+    //         <p>${store.offName}</p>
+    //         <button><a href="${store.link}" target="_blank">바로가기</a></button>
+    //     `
+    //     )
+    //     .join('');
+
+    // document.getElementById('offstore-list').innerHTML = storeListHtml;
 };
 
 // ! 리뷰 작성 CRUD
@@ -350,8 +411,9 @@ const loadSlideBooks = async () => {
     // todo : 링크는 추후 상세페이지 링크로 수정할 예정(현재 알라딘 링크로 연결됨)
     const slideHTML = bookList
         .map((book) => {
+            // console.log(book.isbn13);
             return `<div class="slide_item">
-            <a href="${book.link}">
+            <a href="html/item_detail.html?isbn13=${book.isbn13}">
         <div class="slide_contents">
             <h2>${book.title}</h2>
             <p>${book.author}</p>
@@ -429,6 +491,71 @@ const moveSlide = (num) => {
 const slideControlSetup = () => {
     prevBtn.addEventListener('click', () => moveSlide(currentIdx - 1));
     nextBtn.addEventListener('click', () => moveSlide(currentIdx + 1));
+};
+
+// ? 링크 아웃 관련 실행 함수
+const linkOutDirectSetup = () => {
+    btnItemDetail.addEventListener('click', () => {
+        storageTossData();
+        linkOut();
+    });
+};
+
+// ?
+const linkOutEditorSetup = () => {
+    linkOutEditor.addEventListener('click', () => {
+        // console.log(testStorageRequest);
+        // console.log(testStorageRequest.ISBN13);
+        // storageTossData(); // ! 정보없이 새로운 페이지를 호출하기만 하는 경우
+        storageTossData(9791197956850);
+        linkOut();
+        // linkOut('/html/item_detail.html'); // ! 상세 페이지가 많이 쓰이므로 기본 매개변수로 설정함
+        // linkOut('/html/purchase.html'); // ! 구매페이지 연결시 테스트용
+        // window.location.href = 'html/item_detail.html'; //! 직접 보내는 대신 linkOut 함수 이용
+    });
+};
+
+// ? 원하는 주소로 linkOut 하기 위한 함수. 기본 주소는 상세 페이지
+
+const linkOut = (href = '/html/item_detail.html') => {
+    window.location.href = href;
+};
+
+// ? localStorage에 ISBN이나 ID값을 저장하는 함수
+
+const storageTossData = (tossData = '', tossType = 'ISBN13') => {
+    console.log('tossdata in storageTossData', '');
+    if (tossData == '') {
+        console.log('저장할 tossData가 없습니다. 기존 저장된 내용을 초기화 합니다.');
+        // testStorageRequest.type = '';
+        testStorageRequest.ISBN13 = tossData;
+        testStorageRequest.ID = tossData;
+        console.log(testStorageRequest);
+    } else {
+        testStorageRequest.type = tossType;
+        if ((tossType = 'ISBN13')) {
+            testStorageRequest.ISBN13 = tossData;
+        } else if ((tossType = 'ID')) {
+            testStorageRequest.ID = tossData;
+        } else {
+            console.log('타입에러');
+            return;
+        }
+        // console.log('sss', testStorageRequest);
+        const testObjString = JSON.stringify(testStorageRequest);
+        window.localStorage.setItem('testData', testObjString);
+        // console.log('testData 로컬저장 완료');
+    }
+};
+
+// ? localStorage에 저장된 tossData를 불러와서 반환하는 함수
+
+const unpackTossData = () => {
+    const tempTestData = window.localStorage.getItem('testData');
+    const tempTestObj = JSON.parse(tempTestData);
+    // console.log('testData 불러오기 완료', tempTestObj);
+    // console.log('testData 불러오기 완료222', tempTestObj.ISBN13);
+    return tempTestObj.ISBN13;
 };
 
 // ! 구매 페이지 (상세 페이지쪽과 상의 필요)
@@ -525,8 +652,14 @@ const getListByKeyword = () => {
 
 if (pathNow === '/index.html' || pathNow === '/') {
     slideControlSetup();
+    linkOutDirectSetup();
+    linkOutEditorSetup();
     loadSlideBooks();
 } else if (pathNow === '/html/item_detail.html') {
+    console.log('check-default-testISBN13', testISBN13);
+    testISBN13 = unpackTossData();
+    console.log('unpack-ISBN13', testISBN13);
+    getItemDetails(testISBN13);
     renderReviews(); // 리뷰 렌더링
 } else if (pathNow === '/html/search_result.html') {
     console.log(pathNow);
