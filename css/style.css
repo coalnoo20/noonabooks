@@ -229,8 +229,7 @@ header h1 {
 .page_home .main_editor .editor_img img {
   width: 500px;
   height: 742px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .page_home .main_test {
   height: 800px;
@@ -333,17 +332,20 @@ header h1 {
   margin: 1em;
 }
 
-<<<<<<< HEAD
 .page_item_detail {
-  max-width: 1200px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 20px;
+}
+.page_item_detail h1 {
+  font-family: "NanumDaSiSiJagHae";
+  font-size: 80px;
 }
 
 .item-detail {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border: 1px solid #ddd;
   padding: 15px;
   margin-bottom: 20px;
@@ -359,7 +361,7 @@ header h1 {
 .item-detail-info {
   flex-grow: 1;
   margin-left: 20px;
-  padding: 50px;
+  padding: 30px;
 }
 .item-detail-info h2 {
   font-size: 1.5em;
@@ -447,6 +449,9 @@ header h1 {
   align-items: center;
   margin-left: 30px;
 }
+.review-list .review-item .review-button .button {
+  width: 65px;
+}
 .review-list .review-item .review-info {
   margin-bottom: 5px;
 }
@@ -465,7 +470,8 @@ header h1 {
 }
 .review-list .review-item .button:hover {
   background-color: #c82333;
-=======
+}
+
 .map_container {
   font-family: "Noto Sans KR", sans-serif;
   margin: 0px auto 30px;
@@ -540,7 +546,6 @@ header h1 {
   position: relative;
   bottom: -2px;
   color: #3e9462;
->>>>>>> dev
 }
 
 .page_api_test {

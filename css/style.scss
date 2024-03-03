@@ -444,15 +444,20 @@
 
     // * 개별 페이지 설정 - 2. 제품 상세창 (item_detail)
 .page_item_detail {
-    max-width: 1200px;
+    max-width: 80%;
     margin: 0 auto;
     padding: 20px;
+    
+    h1{
+    font-family: "NanumDaSiSiJagHae";
+    font-size: 80px;
+    }
   }
   
   .item-detail {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     border: 1px solid #ddd; 
     padding: 15px;
     margin-bottom: 20px;
@@ -468,7 +473,7 @@
   .item-detail-info {
     flex-grow: 1;
     margin-left: 20px;
-    padding: 50px;
+    padding: 30px;
 
     h2{
         font-size: 1.5em;
@@ -567,8 +572,10 @@
             display: flex;
             align-items: center;
             margin-left: 30px;
-            // max-width: 100%;
-            // max-height: auto;
+
+            .button{
+                width: 65px;
+            }
         }
   
       .review-info {
