@@ -332,6 +332,27 @@ const easySearchBooks = async () => {
     location.href = data.link; // todo : 링크는 추후 상세 검색 리스트 페이지로 수정할 예정
 };
 
+const testItemDetails = async (isbn13) => {
+    let urlDetail = new URL(`https://${urlAPI_ItemLookUp}?ttbkey=${ttbKey_LUNA}`);
+    console.log('get item details');
+
+    let ItemLookUp_ItemId = isbn13;
+
+    urlDetail.searchParams.set('ItemIdType', ItemLookUp_ItemIdType);
+    urlDetail.searchParams.set('ItemId', ItemLookUp_ItemId);
+    urlDetail.searchParams.set('Output', ItemSearch_output);
+    urlDetail.searchParams.set('Version', ItemLookUp_Version);
+
+    try {
+        const response = await fetch(urlDetail);
+        const data = await response.json();
+        console.log(data.item);
+        //displayResults(data.item[0]);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
 // ! HOME 슬라이드 추천도서 가져오기
 const loadSlideBooks = async () => {
     const urlSlide = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
@@ -350,8 +371,9 @@ const loadSlideBooks = async () => {
     // todo : 링크는 추후 상세페이지 링크로 수정할 예정(현재 알라딘 링크로 연결됨)
     const slideHTML = bookList
         .map((book) => {
+            // console.log(book.isbn13);
             return `<div class="slide_item">
-            <a href="${book.link}">
+            <a href="html/item_detail.html?isbn13=${book.isbn13}">
         <div class="slide_contents">
             <h2>${book.title}</h2>
             <p>${book.author}</p>
