@@ -244,7 +244,8 @@ const createBookElement = (bookInfo) => {
             })}원</p>
         </div>
         <div class="buy-button">
-        <a href="purchase.html?" class="button btn_red">즉시구매</a>
+        <!-- 구매 페이지로 ISBN을 파라미터로 전달 -->
+        <a href="purchase.html?isbn13=${bookInfo.isbn}" class="button btn_red">즉시구매</a>
         </div>
         </div>
         `;
@@ -599,11 +600,11 @@ const loadNewBooks = async () => {
     document.getElementById('new_area').innerHTML = slideHTML;
 };
 
-// ! 구매 페이지 (상세 페이지쪽과 상의 필요)
-// 알라딘 API에서 받아올 상품 번호 임시 데이터
+// ! 구매 페이지
 
 const purchase = () => {
-    const itemIsbn = 'K222938801';
+    // 이제 URL에서 ISBN을 가져옴
+    const itemIsbn = urlPharsing();
 
     fetch(`https://corsproxy.io/?http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ttbKey_JIHYEON}&itemIdType=ISBN&ItemId=${itemIsbn}&output=js&Version=20131101&cover=Big`)
         .then((response) => response.json())
@@ -614,14 +615,16 @@ const purchase = () => {
                 const bookTitle = itemInfo.title;
                 const author = itemInfo.author;
                 const publisher = itemInfo.publisher;
-                const price = itemInfo.priceStandard;
                 const coverUrl = itemInfo.cover;
+                const price = itemInfo.priceSales;
+
+                const formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
 
                 // HTML에 업데이트
                 document.getElementById('book-title').innerText = bookTitle;
                 document.getElementById('author').innerText = author;
                 document.getElementById('publisher').innerText = publisher;
-                document.getElementById('price').innerText = price + '원';
+                document.getElementById('price').innerText = formattedPrice + '원';
                 document.getElementById('book-cover').src = coverUrl;
             } else {
                 console.error('No item found in response:', data);
