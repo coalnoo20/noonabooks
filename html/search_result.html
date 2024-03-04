@@ -18,7 +18,7 @@
                 <h2>원하는 책을 검색해보세요</h2>
                 <div>
                     <p>#어떤 책을 찾으시나요?</p>
-                    <input type="text" placeholder="제목, 저자, 카테고리 검색"/>
+                    <input type="text" id="search_input" placeholder="제목, 저자 검색"/>
                 </div>
                 <div>
                     <span>#상세 검색</span>
@@ -28,13 +28,13 @@
                             <li>
                                 <div>저자</div>
                                 <div>
-                                    <input type="text" size="40" placeholder=""> 
+                                    <input id="search_author" type="text" size="40" placeholder=""> 
                                 </div>
                             </li>
                             <li>
                                 <div>출판사</div>
                                 <div>
-                                    <input type="text" size="40" placeholder="">
+                                    <input id="search_publisher" type="text" size="40" placeholder="">
                                 </div>
                             </li>
                             <li>
@@ -105,29 +105,28 @@
                                     <button>#토익</button>
                                 </span>
                                 <span>
-                                    <button>#주술회전</button>
+                                    <button>#듄</button>
                                 </span>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div>
-                    <button>검색하기</button>
-                    <button>랜덤추천</button>
+                    <button onclick="getListByKeyword()" id="final_search_btn">검색하기</button>
                 </div>
             </div>
         
             <div class="col-6">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" id="random_book_crs">
                     <div class="carousel-item active">
-                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지">
+                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지1">
                     </div>
                     <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지">
+                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지2">
                     </div>
                     <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지">
+                        <img src="..." class="d-block w-100" alt="랜덤 책 이미지3">
                     </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -142,8 +141,11 @@
             </div>
         </section>
 
+        <section id="search_count">
+            전체 검색 결과: 0건
+        </section>
 
-        <section>
+        <section id="search_result_section">
             <div class="row">
                 <div class="col-3">
                     검색 결과 책 이미지
@@ -166,6 +168,12 @@
                 </div>
             </div>
         </section>
+
+        <div class="pagination-container d-flex">
+            <div class="prev-button">이전</div>
+            <div class="number-button-wrapper"><span class="number-button">1</span></div>
+            <div class="next-button">이후</div>
+        </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
