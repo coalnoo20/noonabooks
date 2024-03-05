@@ -138,6 +138,8 @@ let testStorageRequest = {
     ID: 228971437,
 };
 
+let timerSet = false;
+
 // ! html control (object)
 
 // ? HOME 슬라이드 관련 변수
@@ -161,6 +163,59 @@ const pathNow = window.location.pathname;
 // ? 에디터 추천 페이지의 이미지 링크 버튼
 const linkOutEditor = document.getElementById('linkOutEditor');
 const btnItemDetail = document.getElementById('btnItemDetail');
+
+// ? 상세 검색 페이지의 최종 검색 버튼
+const searchInput = document.getElementById('search_input');
+
+// ? 상세 검색 페이지의 페이지네이션 관련 변수 및 함수
+const COUNT_PER_PAGE = 6;
+
+let search_items = [];
+
+const getTotalPageCount = () => {
+    return Math.ceil(search_items.length / COUNT_PER_PAGE);
+};
+
+const numberButtonWrapper = document.querySelector('.number-button-wrapper');
+
+const setPageButtons = () => {
+    numberButtonWrapper.innerHTML = ''; // 페이지 번호 wrapper 내부를 비워줌
+
+    for (let i = 1; i <= getTotalPageCount(); i++) {
+        numberButtonWrapper.innerHTML += `<span class="number-button"> ${i} </span`;
+    }
+};
+
+const searchResultSection = document.getElementById('search_result_section');
+let currentPage = 1;
+
+const setPageOf = (pageNumber) => {
+    searchResultSection.innerHTML = '';
+
+    for (let i = COUNT_PER_PAGE * (pageNumber - 1) + 1; i <= COUNT_PER_PAGE * (pageNumber - 1) + COUNT_PER_PAGE && i <= search_items.length; i++) {
+        searchResultSection.innerHTML += `<div class="row">
+    <div class="col-3">
+        <img src="${search_items[i].cover}"/>
+    </div>
+    <div class="col-7">
+        <div>${search_items[i].title}</div>
+        <div>
+            <div>${search_items[i].author}</div>
+            <span>${search_items[i].publisher}</span><span>${search_items[i].pubDate}</span>
+        </div>
+        <div>${search_items[i].priceSales}</div>
+    </div>
+    <div class="col-2">
+        <div>
+            <button>장바구니</button>
+        </div>
+        <div>
+            <button>바로구매</button>
+        </div>
+    </div>
+</div>`;
+    }
+};
 
 // * -------------
 // * 함수 영역 -일반
@@ -291,7 +346,8 @@ const renderStoreList = (storeList) => {
 let reviews = [
     {
         id: 1,
-        text: '책은 재미가 없으면 읽는게 고문입니다. 아무리 좋은 책도 재미가 있어야 공부도 되고 교훈도 되는데,재미+감동+띄어쓰기 공부 모두를 만족합니다.아이디어도 뛰어나고(작가님 천재인듯) 감동받아서 눈물날 뻔. 아이에게 읽혀 주면서 둘 다 감동 받았어요. 그리고 너무 재미 있어요!!! 같은 시리즈 "받침구조대"도 바로 사러 갑니다. 그리고 소장가치가 있어 주위에 널리 널리 알리고 싶어지네요. 근데 아이가 또 보자고 하넵요 ㅠㅠ',
+        text:
+            '책은 재미가 없으면 읽는게 고문입니다. 아무리 좋은 책도 재미가 있어야 공부도 되고 교훈도 되는데,재미+감동+띄어쓰기 공부 모두를 만족합니다.아이디어도 뛰어나고(작가님 천재인듯) 감동받아서 눈물날 뻔. 아이에게 읽혀 주면서 둘 다 감동 받았어요. 그리고 너무 재미 있어요!!! 같은 시리즈 "받침구조대"도 바로 사러 갑니다. 그리고 소장가치가 있어 주위에 널리 널리 알리고 싶어지네요. 근데 아이가 또 보자고 하넵요 ㅠㅠ',
         rating: 5,
     },
     { id: 2, text: '아이 키우는 엄마들은 꼭 샀으면 하는 책이에요 띄어쓰기를 어쩜 이렇게 재치있게 풀어냈는지.. 아이가 너무 재밌어하네요. 추천합니다^^ ', rating: 3 },
@@ -686,16 +742,129 @@ const testScript = () => {
     }
 };
 
-const getRandomBooks = () => {
+const getRandomBooks = async () => {
     console.log('function getRandomBooks called');
+    const urlRandom = new URL(`https://${urlAPI_ItemList}?ttbkey=${ttbKey_HY}`);
+    urlRandom.searchParams.set('Query', ItemSearch_query);
+    urlRandom.searchParams.set('QueryType', 'ItemNewSpecial');
+    urlRandom.searchParams.set('MaxResult', ItemSearch_maxResults);
+    urlRandom.searchParams.set('start', ItemSearch_start);
+    urlRandom.searchParams.set('SearchTarget', ItemSearch_searchTarget);
+    urlRandom.searchParams.set('output', ItemSearch_output);
+    urlRandom.searchParams.set('Version', ItemSearch_version);
+    urlRandom.searchParams.set('Cover', 'Big');
+
+    const response = await fetch(urlRandom);
+
+    const data = await response.json();
+
+    let random_items = data.item;
+
+    console.log('ddd', random_items);
+
+    let random_items_idx = 0;
+
+    let random_book_crs_HTML = random_items
+        .map((item) => {
+            random_items_idx += 1;
+            return `<div class="carousel-item ${random_items_idx == 1 ? 'active' : ''}" id="btnItemDetail">
+    <img src="${item.cover}" class="d-block w-100" alt="랜덤 책 이미지1">
+</div>`;
+        })
+        .join('');
+
+    document.getElementById('random_book_crs').innerHTML = random_book_crs_HTML;
 };
 
 const getRandomOneBook = () => {
     console.log('function getRandomOneBook called');
 };
 
-const getListByKeyword = () => {
+searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !timerSet) {
+        timerSet = true;
+        setTimeout(() => {
+            getListByKeyword();
+            timerSet = false;
+        }, 100);
+    }
+});
+
+const getListByKeyword = async () => {
     console.log('function getListByKeyword called');
+    let searchInput = document.getElementById('search_input');
+    let searchKeyword = searchInput.value;
+    let searchInputAuthor = document.getElementById('search_author');
+    let searchAuthor = searchInputAuthor.value;
+    let searchInputPublisher = document.getElementById('search_publisher');
+    let searchPublisher = searchInputPublisher.value;
+
+    const urlSearch = new URL(`https://${urlAPI_ItemSearch}?ttbkey=${ttbKey_HY}`);
+    urlSearch.searchParams.set('Query', searchKeyword);
+    urlSearch.searchParams.set('QueryType', ItemSearch_queryType);
+    if (searchAuthor) {
+        urlSearch.searchParams.set('Query', searchAuthor);
+        urlSearch.searchParams.set('QueryType', 'Author');
+    }
+    if (searchPublisher) {
+        urlSearch.searchParams.set('Query', searchPublisher);
+        urlSearch.searchParams.set('QueryType', 'Publisher');
+    }
+    urlSearch.searchParams.set('MaxResults', 100);
+    urlSearch.searchParams.set('start', 1);
+    urlSearch.searchParams.set('SearchTarget', ItemSearch_searchTarget);
+    urlSearch.searchParams.set('output', ItemSearch_output);
+    urlSearch.searchParams.set('Version', ItemSearch_version);
+    urlSearch.searchParams.set('Cover', 'Big');
+
+    const response = await fetch(urlSearch);
+
+    const data = await response.json();
+
+    search_items = data.item;
+
+    console.log(search_items);
+
+    document.getElementById('search_count').innerHTML = `전체 검색 결과: ${search_items.length}건`;
+
+    let search_book_HTML = search_items
+        .slice(1, COUNT_PER_PAGE + 1)
+        .map((item) => {
+            return `<div class="row">
+            <div class="col-3">
+                <img src="${item.cover}"/>
+            </div>
+            <div class="col-7">
+                <div>${item.title}</div>
+                <div>
+                    <div>${item.author}</div>
+                    <span>${item.publisher}</span><span>${item.pubDate}</span>
+                </div>
+                <div>${item.priceSales}</div>
+            </div>
+            <div class="col-2">
+                <div>
+                    <button>장바구니</button>
+                </div>
+                <div>
+                    <button>바로구매</button>
+                </div>
+            </div>
+        </div>`;
+        })
+        .join('');
+
+    document.getElementById('search_result_section').innerHTML = search_book_HTML;
+
+    setPageButtons();
+
+    const pageNumberButtons = document.querySelectorAll('.number-button');
+
+    pageNumberButtons.forEach((numberButton) => {
+        numberButton.addEventListener('click', (e) => {
+            setPageOf(+e.target.innerHTML);
+        });
+    });
 };
 
 // * -------------
@@ -722,6 +891,7 @@ if (pathNow === '/index.html' || pathNow === '/') {
     renderReviews(); // 리뷰 렌더링
 } else if (pathNow === '/html/search_result.html') {
     console.log(pathNow);
+    getRandomBooks();
 } else if (pathNow === '/html/purchase.html') {
     console.log(pathNow);
     console.log('테스트url', urlPharsing());
